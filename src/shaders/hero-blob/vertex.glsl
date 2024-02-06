@@ -90,23 +90,7 @@ vec3 distort(vec3 v) {
 
 
 float tangentFactor = 0.01;
-
-varying vec3 test;
-
 void main() {
-//   vTime = uTime;
-//   vec3 newPosition = distort(position);
-//   vec3 tangent1 = orthogonal(normal);
-//   vec3 tangent2 = normalize(cross(normal, tangent1));
-//   vec3 nearby1 = normal + (tangent1 * tangentFactor);
-//   vec3 nearby2 = normal + (tangent2 * tangentFactor);
-//   vec3 distorted1 = distort(nearby1);
-//   vec3 distorted2 = distort(nearby2);
-
-// test = distorted1 - newPosition;
-//   vec3 newNormal = normalize(cross(distorted1 - newPosition, distorted2 - newPosition));
-//   csm_Normal = newNormal;
-//   csm_Position = newPosition;
   vec3 distortedPosition = distort(position);
   vec3 tangent1 = orthogonal(normal);
   vec3 tangent2 = normalize(cross(normal, tangent1));
