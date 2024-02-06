@@ -10,8 +10,9 @@ export default {
       },
       colors: {
         purple: "#5C07C9",
-        "gray-400": "#312D36",
-        "gray-200": "#D9D9D9",
+        "gray-400": "#312d36",
+        "gray-300": "#9a989e",
+        "gray-200": "#d3d0d6",
       },
       boxShadow: {
         "black-thin": "0 0 16px 4px rgba(0, 0, 0, 15%)",
