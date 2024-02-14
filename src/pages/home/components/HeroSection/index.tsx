@@ -1,3 +1,5 @@
+import ArrowIcon from "@/public/icons/arrow-down-solid.svg";
+
 export default function HeroSection() {
   return (
     <section className="relative flex h-screen w-full items-center justify-center">
@@ -12,7 +14,9 @@ export default function HeroSection() {
       </div>
       <div className="absolute bottom-20 mx-auto flex flex-col items-center justify-center md:bottom-8">
         <span className="text-xl font-bold text-purple">About Me</span>
-        <div className="h-8 w-8 rounded-[1000vmax] bg-gray-400"></div>
+        <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-gray-400">
+          <img src={ArrowIcon} className="h-4 w-4 cursor-pointer" />
+        </div>
       </div>
     </section>
   );
