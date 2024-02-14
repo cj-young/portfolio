@@ -82,10 +82,12 @@ vec3 orthogonal(vec3 v) {
   : vec3(0.0, -v.z, v.y));
 }
 
+uniform float displacementFactor;
+uniform float displacementDensity;
 vec3 distort(vec3 v) {
   float timeFactor = uTime * 0.1;
-  float displacement = 1.0 - noise(v * 2.0  + vec3(timeFactor));
-  return v + (normal * displacement * 0.5);
+  float displacement = 1.0 - noise(v * displacementDensity  + vec3(timeFactor)) * displacementFactor;
+  return v - (normal * displacement * 0.5);
 }
 
 
