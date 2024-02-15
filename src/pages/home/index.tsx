@@ -2,11 +2,11 @@ import { Canvas } from "@react-three/fiber";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import HeroSection from "./components/HeroSection";
-import BlobModel from "./components/MeshContainers/Blob";
-import LeftBracket from "./components/MeshContainers/LeftBracket";
-import RightBracket from "./components/MeshContainers/RightBracket";
 import ProjectsSection from "./components/ProjectsSection";
 import SkillsSection from "./components/SkillsSection";
+import BlobModel from "./components/mesh-containers/Blob";
+import LeftBracket from "./components/mesh-containers/LeftBracket";
+import RightBracket from "./components/mesh-containers/RightBracket";
 
 export default function HomePage() {
   return (
