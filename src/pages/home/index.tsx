@@ -24,8 +24,8 @@ export default function HomePage() {
             rotation={[Math.PI / 2, Math.PI, 0]}
             position={[16, 0, -9]}
           />
-          <ambientLight intensity={4} />
-          <directionalLight intensity={4} position={[-20, 20, 20]} />
+          <ambientLight intensity={3} />
+          <directionalLight intensity={4} position={[0, 20, 10]} />
         </Canvas>
       </div>
       <main className="md:px-39 absolute inset-0 h-full w-full px-12">
