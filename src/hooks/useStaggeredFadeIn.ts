@@ -41,7 +41,7 @@ export default function useStaggeredFadeIn<
     gsap.from(childrenToApplyAnimation, {
       scrollTrigger: {
         trigger: scrollTrigger,
-        start: "top 50%",
+        start: "top 75%",
         scrub: false,
       },
       opacity: 0,
