@@ -1,4 +1,4 @@
-import ArrowIcon from "@/public/icons/arrow-down-solid.svg";
+import ArrowIcon from "@/src/assets/icons/arrow-down-solid.svg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
