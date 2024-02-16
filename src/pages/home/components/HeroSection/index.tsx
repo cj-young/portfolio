@@ -1,9 +1,31 @@
 import ArrowIcon from "@/public/icons/arrow-down-solid.svg";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useRef } from "react";
 
 export default function HeroSection() {
+  const toAboutButtonRef = useRef(null);
+
   function goToAbout() {
     scrollTo({ top: window.innerHeight, behavior: "smooth" });
   }
+
+  useGSAP(() => {
+    if (!toAboutButtonRef.current) return;
+    const toAboutButton = toAboutButtonRef.current;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(toAboutButton, {
+      opacity: 0,
+      translateY: "-=1rem",
+      scrollTrigger: {
+        trigger: toAboutButton,
+        start: "top 20%",
+        scrub: false,
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
 
   return (
     <section className="relative flex h-screen w-full items-center justify-center">
@@ -16,15 +38,16 @@ export default function HeroSection() {
           Front-end Developer
         </p>
       </div>
-      <div className="absolute bottom-20 mx-auto flex flex-col items-center justify-center md:bottom-8">
+      <button
+        className="absolute bottom-20 mx-auto flex cursor-pointer flex-col items-center justify-center md:bottom-8"
+        onClick={goToAbout}
+        ref={toAboutButtonRef}
+      >
         <span className="text-xl font-bold text-purple">About Me</span>
-        <div
-          className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-gray-400"
-          onClick={goToAbout}
-        >
-          <img src={ArrowIcon} className="h-4 w-4 cursor-pointer" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-gray-400">
+          <img src={ArrowIcon} className="h-4 w-4 " />
         </div>
-      </div>
+      </button>
     </section>
   );
 }
