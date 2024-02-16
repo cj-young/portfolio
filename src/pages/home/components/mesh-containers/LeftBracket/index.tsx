@@ -1,4 +1,7 @@
 import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import gsap from "gsap";
+import { useRef } from "react";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 
@@ -11,10 +14,45 @@ type GLTFResult = GLTF & {
   };
 };
 
+const FINISHED_ANIMATION_WINDOW = 0.125;
+const PAGE_INDEX = 1;
+const MAX_SCALE = 1;
+const MIN_SCALE = 0.85;
+
 export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
+  const meshRef = useRef<THREE.Mesh>(null);
   const { nodes, materials } = useGLTF(
     "/3d-models/left-bracket.glb",
   ) as GLTFResult;
+
+  useFrame(() => {
+    if (!meshRef.current) return;
+    const mesh = meshRef.current;
+
+    const framedPercentageScrolled =
+      (window.scrollY - PAGE_INDEX * window.innerHeight) / window.innerHeight;
+    if (Math.abs(framedPercentageScrolled) <= FINISHED_ANIMATION_WINDOW) {
+      gsap.to(mesh.scale, {
+        x: MAX_SCALE,
+        y: MAX_SCALE,
+        z: MAX_SCALE,
+      });
+      gsap.to(materials["Material.002"], {
+        opacity: 1,
+      });
+    } else {
+      gsap.to(mesh.scale, {
+        x: MIN_SCALE,
+        y: MIN_SCALE,
+        z: MIN_SCALE,
+      });
+      materials["Material.002"].transparent = true;
+      gsap.to(materials["Material.002"], {
+        opacity: 0,
+      });
+    }
+  });
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -24,6 +62,7 @@ export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
         material={materials["Material.002"]}
         position={[1.061, 0, 0]}
         rotation={[-Math.PI, Math.PI / 4, -Math.PI]}
+        ref={meshRef}
       />
     </group>
   );

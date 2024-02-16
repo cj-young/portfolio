@@ -1,14 +1,18 @@
+import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
+
 export default function AboutSection() {
+  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>();
+
   return (
-    <section className="relative flex h-screen w-full flex-col items-center justify-center">
-      <h2 className="text-subtitle font-bold text-purple">About Me</h2>
-      <p className="mt-4 max-w-[40ch] text-center text-base text-gray-400">
-        Lorem ipsum dolor sit amet consectetur. Amet scelerisque elementum augue
-        lobortis tortor augue ut aliquam facilisis. Non amet arcu risus non
-        tempor. A sit maecenas leo pellentesque. At mattis cras congue a
-        pharetra ullamcorper quam eu. Pellentesque libero eget fusce auctor.
-        Sollicitudin sagittis magna purus posuere aenean.
-      </p>
+    <section className="relative flex h-screen w-full items-center justify-center">
+      <div className="flex flex-col items-center" ref={parentRef}>
+        <h2 className="text-subtitle font-bold text-purple">About Me</h2>
+        <p className="mt-4 max-w-[45ch] text-center text-base text-gray-400">
+          I'm CJ Young, a front-end web developer based in Raleigh, North
+          Carolina. I am in love with the process of building visually appealing
+          web apps from start to finish. I don't know what else to write here.
+        </p>
+      </div>
     </section>
   );
 }
