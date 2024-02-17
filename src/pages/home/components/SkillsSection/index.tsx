@@ -133,7 +133,7 @@ function SkillImage({
   ) : (
     <div
       className={
-        "h-20 w-20 rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)]"
+        "align-center flex h-20 w-20 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)]"
       }
       style={{
         translate: 0,
