@@ -1,6 +1,7 @@
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import useMergedRef from "@react-hook/merged-ref";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
+import skillImages, { SkillItem } from "./skill-images";
 
 const NUM_SKILL_NODES = 9;
 const SKILL_NODE_OFFSET_ANGLE = 60;
@@ -13,10 +14,10 @@ function getSkillNodeTranslations(cicrleIndex: number) {
   return [
     `calc(cos(${angle}deg) * 11rem)`,
     `calc(-1 * sin(${angle}deg) * 11rem)`,
-  ];
+  ] as [string, string];
 }
 
-const skillImages = Array.from({ length: 9 }, () => null);
+// const skillImages = Array.from({ length: 9 }, () => null);
 
 export default function SkillsSection() {
   const { parentRef: mobileParentRef, scrollTargetRef: mobileScrollTargetRef } =
@@ -30,6 +31,7 @@ export default function SkillsSection() {
   const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>({
     attributeName: "data-animate-grandparent",
   });
+  const [hoveredItem, setHoveredItem] = useState<SkillItem | null>(null);
 
   return (
     <section className="relative flex h-screen w-full items-center justify-center">
@@ -47,13 +49,14 @@ export default function SkillsSection() {
           ref={mobileParentRef}
           data-animate-grandparent="false"
         >
-          {skillImages.map((_image, i) => (
-            <div
-              className={
-                "h-20 w-20 rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)]"
-              }
-              key={i}
-            ></div>
+          {skillImages.map((image) => (
+            <SkillImage
+              isMobile={false}
+              imageUrl={image.imageUrl}
+              imageWidth={image.width}
+              key={image.id}
+              isHovering={hoveredItem === image.id}
+            />
           ))}
         </div>
         <div
@@ -61,22 +64,89 @@ export default function SkillsSection() {
           ref={largeParentRef}
           data-animate-grandparent="false"
         >
-          {skillImages.map((_image, i) => (
-            <div
-              className={
-                "absolute left-[var(--circle-translate-x)] top-[var(--circle-translate-y)] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)]"
+          {skillImages.map((image, i) => (
+            <SkillImage
+              isMobile={true}
+              imageUrl={image.imageUrl}
+              translation={getSkillNodeTranslations(i)}
+              imageWidth={image.width}
+              key={image.id}
+              isHovering={hoveredItem === image.id}
+              onMouseEnter={() => setHoveredItem(image.id)}
+              onMouseLeave={() =>
+                setHoveredItem((h) => (h === image.id ? null : h))
               }
-              key={i}
-              style={
-                {
-                  "--circle-translate-x": getSkillNodeTranslations(i)[0],
-                  "--circle-translate-y": getSkillNodeTranslations(i)[1],
-                } as CSSProperties
-              }
-            ></div>
+            />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+interface SkillImageProps {
+  imageUrl: string;
+  imageWidth?: string | number;
+  isMobile?: boolean;
+  translation?: [string | number, string | number];
+  isHovering?: boolean;
+  onMouseEnter?(): any;
+  onMouseLeave?(): any;
+}
+
+function SkillImage({
+  imageUrl,
+  isMobile = false,
+  translation = [0, 0],
+  imageWidth = "60%",
+  onMouseEnter,
+  onMouseLeave,
+  isHovering,
+}: SkillImageProps) {
+  if (isHovering) {
+    console.log("hovering");
+  }
+
+  return isMobile ? (
+    <div
+      className={
+        "align-center absolute left-[var(--circle-translate-x)] top-[var(--circle-translate-y)] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)] transition-[scale]"
+      }
+      style={
+        {
+          "--circle-translate-x": translation[0],
+          "--circle-translate-y": translation[1],
+        } as CSSProperties
+      }
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <img
+        src={imageUrl}
+        className="block transition-[scale]"
+        style={{
+          width: imageWidth,
+          scale: isHovering ? "110%" : "100%",
+        }}
+      />
+    </div>
+  ) : (
+    <div
+      className={
+        "h-20 w-20 rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)]"
+      }
+      style={{
+        translate: 0,
+      }}
+    >
+      <img
+        src={imageUrl}
+        className="block transition-[scale]"
+        style={{
+          width: imageWidth,
+          scale: isHovering ? 1.1 : 1,
+        }}
+      />
+    </div>
   );
 }
