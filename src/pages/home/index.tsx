@@ -14,16 +14,8 @@ export default function HomePage() {
       <div className="fixed inset-0 bg-gradient-to-b from-white to-[#eeeeee]">
         <Canvas>
           <BlobModel />
-          <LeftBracket
-            scale={0.5}
-            rotation={[Math.PI / 2, Math.PI, 0]}
-            position={[-16, 0, -9]}
-          />
-          <RightBracket
-            scale={0.5}
-            rotation={[Math.PI / 2, Math.PI, 0]}
-            position={[16, 0, -9]}
-          />
+          <LeftBracket scale={0.5} position={[-16, 0, -9]} />
+          <RightBracket scale={0.5} position={[16, 0, -9]} />
           <ambientLight intensity={3} />
           <directionalLight intensity={4} position={[0, 20, 10]} />
         </Canvas>

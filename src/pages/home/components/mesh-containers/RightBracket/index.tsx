@@ -1,3 +1,4 @@
+import useMousePosition from "@/src/hooks/useMousePosition";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
@@ -20,16 +21,26 @@ const FINISHED_ANIMATION_WINDOW = 0.125;
 const PAGE_INDEX = 1;
 const MAX_SCALE = 1;
 const MIN_SCALE = 0.85;
+const VERTICAL_ROTATION_SPEED = 0.5;
+const HORIZONTAL_ROTATION_SPEED = 0.5;
 
 export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
   const groupRef = useRef<THREE.Group>(null);
   const { nodes, materials } = useGLTF(
     "/3d-models/right-bracket-with-slash.glb",
   ) as GLTFResult;
+  const mousePosition = useMousePosition();
 
   useFrame(() => {
     if (!groupRef.current) return;
     const group = groupRef.current;
+
+    // z and x are used instead of y and x to account for initial rotation
+    gsap.to(group.rotation, {
+      z: (mousePosition.x - 0.5) * HORIZONTAL_ROTATION_SPEED,
+      x: (mousePosition.y - 0.5) * VERTICAL_ROTATION_SPEED,
+      duration: 2,
+    });
 
     const framedPercentageScrolled =
       (window.scrollY - PAGE_INDEX * window.innerHeight) / window.innerHeight;
@@ -63,7 +74,7 @@ export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
   });
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} rotation={[Math.PI / 2, Math.PI, 0]}>
       <group ref={groupRef}>
         <mesh
           castShadow
