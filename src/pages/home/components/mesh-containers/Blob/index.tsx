@@ -1,4 +1,3 @@
-import fragmentShader from "@/src/shaders/hero-blob/fragment.glsl?raw";
 import vertexShader from "@/src/shaders/hero-blob/vertex.glsl?raw";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
@@ -46,14 +45,13 @@ export default function BlobModel() {
         ref={materialRef}
         baseMaterial={MeshStandardMaterial}
         vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
         silent
         uniforms={{
           uTime: { value: 0 },
           displacementFactor: { value: DISPLACEMENT_FACTOR },
           displacementDensity: { value: DISPLACEMENT_DENSITY },
         }}
-        color={0xffffff}
+        color={0xfafafa}
         transparent
       />
     </mesh>
