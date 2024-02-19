@@ -22,3 +22,15 @@ export const tsPositions: [number, number, number][] = [
   [10, 4, -5],
   [12, 0, -5],
 ];
+
+export const htmlPositions: [number, number, number][] = [
+  [-7, 1, -4],
+  [-9, -3, -4],
+  [-11, 2, -4],
+  [-8, -1, -2],
+  [9, 3, -4],
+  [8, -3, -4],
+  [11, 2, -4],
+  [6, 1, -2],
+  [12, -2, -6],
+];

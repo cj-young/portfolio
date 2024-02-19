@@ -1,4 +1,4 @@
-import { jsPositions, tsPositions } from "./logo-positions";
+import { htmlPositions, jsPositions, tsPositions } from "./logo-positions";
 import LogoWrapper from "./logos/LogoWrapper";
 
 export default function SkillSectionLogos() {
@@ -9,6 +9,9 @@ export default function SkillSectionLogos() {
       ))}
       {tsPositions.map((position, i) => (
         <LogoWrapper position={position} skillId="ts" key={`ts${i}`} />
+      ))}
+      {htmlPositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="html" key={`ts${i}`} />
       ))}
     </group>
   );
