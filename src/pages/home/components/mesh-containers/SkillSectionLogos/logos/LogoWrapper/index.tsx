@@ -4,6 +4,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { Group } from "three";
+import CssLogo from "../Css";
 import HtmlLogo from "../Html";
 import JavaScriptLogo from "../JavaScript";
 import TypeScriptLogo from "../TypeScript";
@@ -102,5 +103,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
     <TypeScriptLogo position={position} innerRef={innerRef} />
   ) : skillId === "html" ? (
     <HtmlLogo position={position} innerRef={innerRef} />
+  ) : skillId === "css" ? (
+    <CssLogo position={position} innerRef={innerRef} />
   ) : null;
 }
