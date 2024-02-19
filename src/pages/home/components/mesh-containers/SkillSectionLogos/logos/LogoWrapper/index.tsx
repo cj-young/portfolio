@@ -9,6 +9,7 @@ import HtmlLogo from "../Html";
 import JavaScriptLogo from "../JavaScript";
 import NextLogo from "../Next";
 import ReactLogo from "../React";
+import ScssLogo from "../Scss";
 import TypeScriptLogo from "../TypeScript";
 
 type Props = {
@@ -111,5 +112,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
     <ReactLogo position={position} innerRef={innerRef} />
   ) : skillId === "next" ? (
     <NextLogo position={position} innerRef={innerRef} />
+  ) : skillId === "scss" ? (
+    <ScssLogo position={position} innerRef={innerRef} />
   ) : null;
 }
