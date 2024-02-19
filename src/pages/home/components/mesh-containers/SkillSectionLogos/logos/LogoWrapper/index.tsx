@@ -7,6 +7,7 @@ import { Group } from "three";
 import CssLogo from "../Css";
 import HtmlLogo from "../Html";
 import JavaScriptLogo from "../JavaScript";
+import ReactLogo from "../React";
 import TypeScriptLogo from "../TypeScript";
 
 type Props = {
@@ -105,5 +106,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
     <HtmlLogo position={position} innerRef={innerRef} />
   ) : skillId === "css" ? (
     <CssLogo position={position} innerRef={innerRef} />
+  ) : skillId === "react" ? (
+    <ReactLogo position={position} innerRef={innerRef} />
   ) : null;
 }

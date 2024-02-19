@@ -44,3 +44,15 @@ export const cssPositions: [number, number, number][] = [
   [9, 0, -5],
   [8, 2, -5],
 ];
+
+export const reactPositions: [number, number, number][] = [
+  [-12, 0, -5],
+  [-9, 3, -5],
+  [-10, -4, -5],
+  [-8, -1, -6],
+  [7, -4, -5],
+  [10, -3, -5],
+  [12, 1, -5],
+  [9, 0, -5],
+  [8, 2, -5],
+];
