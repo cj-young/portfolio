@@ -7,6 +7,7 @@ import reactIcon from "@/src/assets/skill-icons/react.svg";
 import scssIcon from "@/src/assets/skill-icons/scss.svg";
 import tailwindIcon from "@/src/assets/skill-icons/tailwind.svg";
 import tsIcon from "@/src/assets/skill-icons/ts-logo.svg";
+import { SkillItem } from "@/types/three";
 
 const skillImages: {
   imageUrl: string;
@@ -61,14 +62,3 @@ const skillImages: {
 ];
 
 export default skillImages;
-
-export type SkillItem =
-  | "css"
-  | "html"
-  | "js"
-  | "ts"
-  | "react"
-  | "next"
-  | "scss"
-  | "tailwind"
-  | "git";

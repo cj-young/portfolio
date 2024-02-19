@@ -1,7 +1,9 @@
+import { useThreeContext } from "@/src/contexts/ThreeContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
+import { SkillItem } from "@/types/three";
 import useMergedRef from "@react-hook/merged-ref";
-import { CSSProperties, useState } from "react";
-import skillImages, { SkillItem } from "./skill-images";
+import { CSSProperties, useEffect, useState } from "react";
+import skillImages from "./skill-images";
 
 const NUM_SKILL_NODES = 9;
 const SKILL_NODE_OFFSET_ANGLE = 60;
@@ -32,6 +34,11 @@ export default function SkillsSection() {
     attributeName: "data-animate-grandparent",
   });
   const [hoveredItem, setHoveredItem] = useState<SkillItem | null>(null);
+  const { setActiveSkill } = useThreeContext();
+
+  useEffect(() => {
+    setActiveSkill(hoveredItem);
+  }, [hoveredItem]);
 
   return (
     <section className="relative flex h-screen w-full items-center justify-center">
@@ -103,10 +110,6 @@ function SkillImage({
   onMouseLeave,
   isHovering,
 }: SkillImageProps) {
-  if (isHovering) {
-    console.log("hovering");
-  }
-
   return isMobile ? (
     <div
       className={
