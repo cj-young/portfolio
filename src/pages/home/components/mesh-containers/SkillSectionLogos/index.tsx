@@ -2,6 +2,7 @@ import {
   cssPositions,
   htmlPositions,
   jsPositions,
+  nextPositions,
   reactPositions,
   tsPositions,
 } from "./logo-positions";
@@ -24,6 +25,9 @@ export default function SkillSectionLogos() {
       ))}
       {reactPositions.map((position, i) => (
         <LogoWrapper position={position} skillId="react" key={`ts${i}`} />
+      ))}
+      {nextPositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="next" key={`ts${i}`} />
       ))}
     </group>
   );
