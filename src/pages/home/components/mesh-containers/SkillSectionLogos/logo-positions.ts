@@ -12,15 +12,13 @@ export const jsPositions: [number, number, number][] = [
 
 export const tsPositions: [number, number, number][] = [
   [-9, 3, -6],
-  [-10, -4, -3],
   [-10, -2, -5],
   [-14, 1, -6],
-  [-6, -5, -5],
+  [-7, -5, -5],
   [8, 0, -5],
-  [8, -7, -7],
-  [8, -3, -3],
+  [9, -5, -7],
+  [10, -2, -3],
   [10, 4, -5],
-  [12, 0, -5],
 ];
 
 export const htmlPositions: [number, number, number][] = [
