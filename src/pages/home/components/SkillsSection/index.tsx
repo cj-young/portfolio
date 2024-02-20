@@ -59,11 +59,15 @@ export default function SkillsSection() {
         >
           {skillImages.map((image) => (
             <SkillImage
-              isMobile={false}
+              isMobile={true}
               imageUrl={image.imageUrl}
               imageWidth={image.width}
               key={image.id}
               isHovering={hoveredItem === image.id}
+              onMouseEnter={() => setHoveredItem(image.id)}
+              onMouseLeave={() =>
+                setHoveredItem((h) => (h === image.id ? null : h))
+              }
             />
           ))}
         </div>
@@ -74,7 +78,7 @@ export default function SkillsSection() {
         >
           {skillImages.map((image, i) => (
             <SkillImage
-              isMobile={true}
+              isMobile={false}
               imageUrl={image.imageUrl}
               translation={getSkillNodeTranslations(i)}
               imageWidth={image.width}
@@ -111,7 +115,7 @@ function SkillImage({
   onMouseLeave,
   isHovering,
 }: SkillImageProps) {
-  return isMobile ? (
+  return !isMobile ? (
     <div
       className={
         "align-center absolute left-[var(--circle-translate-x)] top-[var(--circle-translate-y)] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)] transition-[scale]"
@@ -142,6 +146,8 @@ function SkillImage({
       style={{
         translate: 0,
       }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <img
         src={imageUrl}
