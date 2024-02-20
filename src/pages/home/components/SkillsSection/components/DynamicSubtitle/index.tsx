@@ -60,7 +60,7 @@ export default function DynamicSubtitle({ hoveredItem }: Props) {
   return (
     <div className="relative h-10 w-[15rem]">
       <h2
-        className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-subtitle font-bold text-purple transition-opacity delay-200"
+        className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-subtitle font-bold text-purple transition-opacity delay-100"
         style={{
           opacity: hoveredItem === null ? 1 : 0,
         }}
@@ -70,7 +70,7 @@ export default function DynamicSubtitle({ hoveredItem }: Props) {
       </h2>
       {skillTitles.map((title) => (
         <span
-          className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-subtitle font-bold transition-opacity delay-200"
+          className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center text-subtitle font-bold transition-opacity delay-100"
           style={{
             opacity: hoveredItem === title.skillId ? 1 : 0,
             color: title.color,
