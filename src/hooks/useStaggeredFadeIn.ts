@@ -7,6 +7,7 @@ type TConfig = {
   autoApply?: boolean;
   duration?: number;
   attributeName?: string;
+  onAnimationFinished?(): void;
 };
 /**
  *
@@ -22,6 +23,7 @@ export default function useStaggeredFadeIn<
   autoApply = true,
   duration = 0.5,
   attributeName = "data-animate",
+  onAnimationFinished,
 }: TConfig = {}) {
   const parentRef = useRef<T>(null);
   const scrollTargetRef = useRef<U>(null);
@@ -48,6 +50,7 @@ export default function useStaggeredFadeIn<
       translateY: "+=1rem",
       stagger: 0.25 * duration,
       duration,
+      onComplete: onAnimationFinished,
     });
   });
 
