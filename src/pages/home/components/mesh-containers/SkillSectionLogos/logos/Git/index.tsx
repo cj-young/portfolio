@@ -36,6 +36,7 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
         receiveShadow
         geometry={nodes.Cube.geometry}
         material={materials["Material.001"]}
+        scale={0.944}
       />
       <mesh
         castShadow
