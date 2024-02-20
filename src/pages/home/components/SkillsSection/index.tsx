@@ -3,6 +3,7 @@ import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import { SkillItem } from "@/types/three";
 import useMergedRef from "@react-hook/merged-ref";
 import { CSSProperties, useEffect, useState } from "react";
+import DynamicSubtitle from "./components/DynamicSubtitle";
 import skillImages from "./skill-images";
 
 const NUM_SKILL_NODES = 9;
@@ -50,7 +51,7 @@ export default function SkillsSection() {
           largeScrollTargetRef,
         )}
       >
-        <h2 className="text-subtitle font-bold text-purple">My Skills</h2>
+        <DynamicSubtitle hoveredItem={hoveredItem} />
         <div
           className="mt-4 grid grid-cols-3 gap-4 md:hidden"
           ref={mobileParentRef}
