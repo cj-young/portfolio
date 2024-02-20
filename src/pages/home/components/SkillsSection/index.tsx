@@ -23,6 +23,7 @@ function getSkillNodeTranslations(cicrleIndex: number) {
 // const skillImages = Array.from({ length: 9 }, () => null);
 
 export default function SkillsSection() {
+  const [isAnimationFinished, setIsAnimationFinished] = useState(false);
   const { parentRef: mobileParentRef, scrollTargetRef: mobileScrollTargetRef } =
     useStaggeredFadeIn<HTMLDivElement>({
       duration: 0.5,
@@ -30,6 +31,7 @@ export default function SkillsSection() {
   const { parentRef: largeParentRef, scrollTargetRef: largeScrollTargetRef } =
     useStaggeredFadeIn<HTMLDivElement>({
       duration: 0.5,
+      onAnimationFinished: () => setIsAnimationFinished(true),
     });
   const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>({
     attributeName: "data-animate-grandparent",
@@ -38,8 +40,9 @@ export default function SkillsSection() {
   const { setActiveSkill } = useThreeContext();
 
   useEffect(() => {
+    if (!isAnimationFinished) return;
     setActiveSkill(hoveredItem);
-  }, [hoveredItem]);
+  }, [hoveredItem, isAnimationFinished]);
 
   return (
     <section className="relative flex h-screen w-full items-center justify-center">
@@ -51,7 +54,9 @@ export default function SkillsSection() {
           largeScrollTargetRef,
         )}
       >
-        <DynamicSubtitle hoveredItem={hoveredItem} />
+        <DynamicSubtitle
+          hoveredItem={isAnimationFinished ? hoveredItem : null}
+        />
         <div
           className="mt-4 grid grid-cols-3 gap-4 md:hidden"
           ref={mobileParentRef}
