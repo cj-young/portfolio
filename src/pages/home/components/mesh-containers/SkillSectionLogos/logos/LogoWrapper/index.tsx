@@ -25,6 +25,12 @@ const MAX_Z_ROTATION = Math.PI / 8;
 const MAX_ROTATION_SPEED = 0.5;
 const MIN_ROTATION_SPEED = 0.05;
 
+const PAGE_INDEX = 2;
+
+// Fraction of section height where if the middle of the
+// viewport is inside, 3d objects are visible
+const SCROLL_WINDOW = 1;
+
 export default function LogoWrapper({ position, skillId }: Props) {
   const innerRef = useRef<Group>(null);
   const { activeSkill } = useThreeContext();
@@ -54,6 +60,25 @@ export default function LogoWrapper({ position, skillId }: Props) {
   useFrame(({ clock }) => {
     const group = innerRef.current;
     if (!group) return;
+
+    const sectionTooLow =
+      window.scrollY + window.innerHeight / 2 <
+      PAGE_INDEX * window.innerHeight -
+        (window.innerHeight - window.innerHeight * SCROLL_WINDOW) / 2;
+
+    const sectionTooHigh =
+      window.scrollY + window.innerHeight / 2 >
+      (PAGE_INDEX + 1) * window.innerHeight +
+        (window.innerHeight - window.innerHeight * SCROLL_WINDOW) / 2;
+
+    if (sectionTooHigh || sectionTooLow) {
+      gsap.to(group.scale, {
+        x: 0,
+        y: 0,
+        z: 0,
+      });
+      return;
+    }
 
     if (activeSkill.current.id === skillId) {
       gsap.to(group.scale, {
