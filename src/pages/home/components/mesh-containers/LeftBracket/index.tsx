@@ -85,4 +85,4 @@ export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/left-bracket.glb");
+useGLTF.preload("/3d-models/left-bracket.glb");

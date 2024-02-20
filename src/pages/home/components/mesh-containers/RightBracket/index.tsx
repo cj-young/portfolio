@@ -98,4 +98,4 @@ export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/right-bracket-with-slash.glb");
+useGLTF.preload("/3d-models/right-bracket-with-slash.glb");
