@@ -80,15 +80,15 @@ export const scssPositions: [number, number, number][] = [
   [8, 2, -5],
 ];
 export const tailwindPositions: [number, number, number][] = [
-  [-12, 0, -5],
-  [-9, 3, -5],
+  [-9, 2, -5],
   [-10, -4, -5],
-  [-8, -1, -6],
+  [-11, -1, -5],
+  [-7, -2, -4],
+  [10, 1, -5],
   [7, -4, -5],
-  [10, -3, -5],
-  [12, 1, -5],
-  [9, 0, -5],
-  [8, 2, -5],
+  [8, -1, -5],
+  [7, 2, -4],
+  [10, -3, -6],
 ];
 export const gitPositions: [number, number, number][] = [
   [-12, -1, -5],
