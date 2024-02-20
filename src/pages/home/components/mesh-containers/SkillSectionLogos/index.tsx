@@ -1,10 +1,12 @@
 import {
   cssPositions,
+  gitPositions,
   htmlPositions,
   jsPositions,
   nextPositions,
   reactPositions,
   scssPositions,
+  tailwindPositions,
   tsPositions,
 } from "./logo-positions";
 import LogoWrapper from "./logos/LogoWrapper";
@@ -32,6 +34,12 @@ export default function SkillSectionLogos() {
       ))}
       {scssPositions.map((position, i) => (
         <LogoWrapper position={position} skillId="scss" key={`ts${i}`} />
+      ))}
+      {tailwindPositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="tailwind" key={`ts${i}`} />
+      ))}
+      {gitPositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="git" key={`ts${i}`} />
       ))}
     </group>
   );

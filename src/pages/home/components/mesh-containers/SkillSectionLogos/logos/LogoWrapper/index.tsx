@@ -5,11 +5,13 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { Group } from "three";
 import CssLogo from "../Css";
+import GitLogo from "../Git";
 import HtmlLogo from "../Html";
 import JavaScriptLogo from "../JavaScript";
 import NextLogo from "../Next";
 import ReactLogo from "../React";
 import ScssLogo from "../Scss";
+import TailwindLogo from "../Tailwind";
 import TypeScriptLogo from "../TypeScript";
 
 type Props = {
@@ -114,5 +116,9 @@ export default function LogoWrapper({ position, skillId }: Props) {
     <NextLogo position={position} innerRef={innerRef} />
   ) : skillId === "scss" ? (
     <ScssLogo position={position} innerRef={innerRef} />
+  ) : skillId === "tailwind" ? (
+    <TailwindLogo position={position} innerRef={innerRef} />
+  ) : skillId === "git" ? (
+    <GitLogo position={position} innerRef={innerRef} />
   ) : null;
 }
