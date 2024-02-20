@@ -21,7 +21,7 @@ const skillTitles: {
   },
   {
     skillId: "js",
-    color: "#f7df1e",
+    color: "#d6be02",
     text: "JavaScript",
   },
   {
@@ -31,7 +31,7 @@ const skillTitles: {
   },
   {
     skillId: "react",
-    color: "#00d8ff",
+    color: "#00a8c7",
     text: "React",
   },
   {
