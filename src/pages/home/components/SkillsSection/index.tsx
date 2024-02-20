@@ -141,7 +141,7 @@ function SkillImage({
   ) : (
     <div
       className={
-        "align-center flex h-20 w-20 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)]"
+        "align-center flex h-20 w-20 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)] transition-[scale]"
       }
       style={{
         translate: 0,
@@ -154,7 +154,7 @@ function SkillImage({
         className="block transition-[scale]"
         style={{
           width: imageWidth,
-          scale: isHovering ? 1.1 : 1,
+          scale: isHovering ? "110%" : "100%",
         }}
       />
     </div>
