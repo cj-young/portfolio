@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import { useScrollContext } from "../../../contexts/ScrollContext";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -30,6 +31,7 @@ export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
     "/3d-models/right-bracket-with-slash.glb",
   ) as GLTFResult;
   const mousePosition = useMousePosition();
+  const { getScrollTop } = useScrollContext();
 
   useFrame(() => {
     if (!groupRef.current) return;
@@ -43,7 +45,7 @@ export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
     });
 
     const framedPercentageScrolled =
-      (window.scrollY - PAGE_INDEX * window.innerHeight) / window.innerHeight;
+      (getScrollTop() - PAGE_INDEX * window.innerHeight) / window.innerHeight;
     if (Math.abs(framedPercentageScrolled) <= FINISHED_ANIMATION_WINDOW) {
       gsap.to(group.scale, {
         x: MAX_SCALE,

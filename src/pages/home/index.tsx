@@ -9,10 +9,13 @@ import BlobModel from "./components/mesh-containers/Blob";
 import LeftBracket from "./components/mesh-containers/LeftBracket";
 import RightBracket from "./components/mesh-containers/RightBracket";
 import SkillSectionLogos from "./components/mesh-containers/SkillSectionLogos";
+import ScrollContextProvider, {
+  useScrollContext,
+} from "./contexts/ScrollContext";
 
 export default function HomePage() {
   return (
-    <>
+    <ScrollContextProvider>
       <>
         <div className="fixed inset-0 bg-gradient-to-b from-white to-[#eeeeee]">
           <Canvas flat>
@@ -24,15 +27,26 @@ export default function HomePage() {
             <directionalLight intensity={1.5} position={[-1, 2, 2]} />
           </Canvas>
         </div>
-        <main className="md:px-39 absolute inset-0 h-full w-full px-12">
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
-        </main>
+        <MainSection />
       </>
       <ScreenLoader />
-    </>
+    </ScrollContextProvider>
+  );
+}
+
+function MainSection() {
+  const { scroller } = useScrollContext();
+
+  return (
+    <main
+      className="md:px-39 absolute inset-0 h-full w-full overflow-auto px-12"
+      ref={scroller}
+    >
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+    </main>
   );
 }

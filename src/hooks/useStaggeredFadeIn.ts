@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
+import { useScrollContext } from "../pages/home/contexts/ScrollContext";
 
 type TConfig = {
   autoApply?: boolean;
@@ -27,6 +28,7 @@ export default function useStaggeredFadeIn<
 }: TConfig = {}) {
   const parentRef = useRef<T>(null);
   const scrollTargetRef = useRef<U>(null);
+  const { scroller } = useScrollContext();
 
   useGSAP(() => {
     if (!parentRef.current) return;
@@ -45,6 +47,8 @@ export default function useStaggeredFadeIn<
         trigger: scrollTrigger,
         start: "top 75%",
         scrub: false,
+        // markers: true,
+        scroller: scroller.current,
       },
       opacity: 0,
       translateY: "+=1rem",

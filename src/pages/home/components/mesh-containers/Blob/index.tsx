@@ -6,6 +6,7 @@ import { Mesh, MeshStandardMaterial, ShaderMaterial } from "three";
 import ThreeCustomShaderMaterial from "three-custom-shader-material";
 
 import useMousePosition from "@/src/hooks/useMousePosition";
+import { useScrollContext } from "../../../contexts/ScrollContext";
 
 const DISPLACEMENT_FACTOR = 1.5;
 const DISPLACEMENT_DENSITY = 0.75;
@@ -17,6 +18,7 @@ export default function BlobModel() {
   const materialRef = useRef<ShaderMaterial>(null);
   const meshRef = useRef<Mesh>(null);
   const mousePosition = useMousePosition({});
+  const { getScrollTop } = useScrollContext();
 
   useFrame((state, _delta) => {
     const material = materialRef.current;
@@ -29,7 +31,7 @@ export default function BlobModel() {
       duration: 4,
     });
     const percentScrolled =
-      window.scrollY / (END_ANIMATION_SCROLL * window.innerHeight);
+      getScrollTop() / (END_ANIMATION_SCROLL * window.innerHeight);
     const scale = START_SCALE - percentScrolled * (START_SCALE - END_SCALE);
     mesh.scale.x = scale;
     mesh.scale.y = scale;

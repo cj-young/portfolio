@@ -2,9 +2,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
+import { useScrollContext } from "../pages/home/contexts/ScrollContext";
 
 export default function useFadeIn() {
   const elementRef = useRef(null);
+  const { scroller } = useScrollContext();
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -18,6 +20,7 @@ export default function useFadeIn() {
           trigger: elementRef.current,
           start: "top 66%",
           scrub: false,
+          scroller: scroller.current,
         },
       },
     );

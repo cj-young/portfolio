@@ -1,4 +1,5 @@
 import { useThreeContext } from "@/src/contexts/ThreeContext";
+import { useScrollContext } from "@/src/pages/home/contexts/ScrollContext";
 import { SkillItem } from "@/types/three";
 import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
@@ -35,6 +36,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
   const innerRef = useRef<Group>(null);
   const { activeSkill } = useThreeContext();
   const { camera } = useThree();
+  const { getScrollTop } = useScrollContext();
   const rotationSpeed = useRef({
     x:
       Math.random() * (MAX_ROTATION_SPEED - MIN_ROTATION_SPEED) +
@@ -62,12 +64,12 @@ export default function LogoWrapper({ position, skillId }: Props) {
     if (!group) return;
 
     const sectionTooLow =
-      window.scrollY + window.innerHeight / 2 <
+      getScrollTop() + window.innerHeight / 2 <
       PAGE_INDEX * window.innerHeight -
         (window.innerHeight - window.innerHeight * SCROLL_WINDOW) / 2;
 
     const sectionTooHigh =
-      window.scrollY + window.innerHeight / 2 >
+      getScrollTop() + window.innerHeight / 2 >
       (PAGE_INDEX + 1) * window.innerHeight +
         (window.innerHeight - window.innerHeight * SCROLL_WINDOW) / 2;
 

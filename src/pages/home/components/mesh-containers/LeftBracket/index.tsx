@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
+import { useScrollContext } from "../../../contexts/ScrollContext";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -29,6 +30,7 @@ export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
   ) as GLTFResult;
   const groupRef = useRef<THREE.Group>(null);
   const mousePosition = useMousePosition();
+  const { getScrollTop } = useScrollContext();
 
   useFrame(() => {
     if (!meshRef.current) return;
@@ -45,7 +47,7 @@ export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
     }
 
     const framedPercentageScrolled =
-      (window.scrollY - PAGE_INDEX * window.innerHeight) / window.innerHeight;
+      (getScrollTop() - PAGE_INDEX * window.innerHeight) / window.innerHeight;
     if (Math.abs(framedPercentageScrolled) <= FINISHED_ANIMATION_WINDOW) {
       gsap.to(mesh.scale, {
         x: MAX_SCALE,
