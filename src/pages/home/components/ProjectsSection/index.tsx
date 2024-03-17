@@ -1,15 +1,20 @@
 import projectConfigs from "@/src/config/projects";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
+import { useScrollContext } from "../../contexts/ScrollContext";
 import ProjectPreview from "./components/ProjectPreview";
 
 export default function ProjectsSection() {
-  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>({
+  const { scroller } = useScrollContext();
+  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>(scroller, {
     clearProps: "transform",
   });
-  const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>({
-    attributeName: "data-animate-grandparent",
-    clearProps: "transform",
-  });
+  const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>(
+    scroller,
+    {
+      attributeName: "data-animate-grandparent",
+      clearProps: "transform",
+    },
+  );
 
   return (
     <section

@@ -2,7 +2,6 @@ import { useGSAP } from "@gsap/react";
 import gsap, { CSSPlugin } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
-import { useScrollContext } from "../pages/home/contexts/ScrollContext";
 
 type TConfig = {
   autoApply?: boolean;
@@ -13,6 +12,7 @@ type TConfig = {
 };
 /**
  *
+ * @param {Object} containerRef The container that is being scrolled
  * @param {Object} config The configuration object
  * @param {boolean} config.autoApply If true, chilren of `parentRef` must be given the attribute `data-animate=false` to opt out of animation. If false, children must be given `data-animate=true` to opt in.
  * @param {number} config.duration The duration of each animation
@@ -21,16 +21,20 @@ type TConfig = {
 export default function useStaggeredFadeIn<
   T extends HTMLElement,
   U extends HTMLElement = T,
->({
-  autoApply = true,
-  duration = 0.5,
-  attributeName = "data-animate",
-  onAnimationFinished,
-  clearProps = "",
-}: TConfig = {}) {
+>(
+  containerRef: React.RefObject<HTMLDivElement>,
+  {
+    autoApply = true,
+    duration = 0.5,
+    attributeName = "data-animate",
+    onAnimationFinished,
+    clearProps = "",
+  }: TConfig = {},
+) {
+  // The parent of the elements to animate in
   const parentRef = useRef<T>(null);
+  // A ref of the element that is being scrolled
   const scrollTargetRef = useRef<U>(null);
-  const { scroller } = useScrollContext();
 
   useGSAP(() => {
     if (!parentRef.current) return;
@@ -51,7 +55,7 @@ export default function useStaggeredFadeIn<
         start: "top 75%",
         scrub: false,
         // markers: true,
-        scroller: scroller.current,
+        scroller: containerRef.current,
       },
       opacity: 0,
       translateY: "+=1rem",

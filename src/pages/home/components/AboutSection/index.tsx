@@ -1,7 +1,9 @@
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 export default function AboutSection() {
-  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>();
+  const { scroller } = useScrollContext();
+  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>(scroller);
 
   return (
     <section className="relative flex h-screen w-full items-center justify-center">

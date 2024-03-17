@@ -3,6 +3,7 @@ import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import { SkillItem } from "@/types/three";
 import useMergedRef from "@react-hook/merged-ref";
 import { CSSProperties, useEffect, useState } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
 import DynamicSubtitle from "./components/DynamicSubtitle";
 import skillImages from "./skill-images";
 
@@ -24,18 +25,22 @@ function getSkillNodeTranslations(cicrleIndex: number) {
 
 export default function SkillsSection() {
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
+  const { scroller } = useScrollContext();
   const { parentRef: mobileParentRef, scrollTargetRef: mobileScrollTargetRef } =
-    useStaggeredFadeIn<HTMLDivElement>({
+    useStaggeredFadeIn<HTMLDivElement>(scroller, {
       duration: 0.5,
     });
   const { parentRef: largeParentRef, scrollTargetRef: largeScrollTargetRef } =
-    useStaggeredFadeIn<HTMLDivElement>({
+    useStaggeredFadeIn<HTMLDivElement>(scroller, {
       duration: 0.5,
       onAnimationFinished: () => setIsAnimationFinished(true),
     });
-  const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>({
-    attributeName: "data-animate-grandparent",
-  });
+  const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>(
+    scroller,
+    {
+      attributeName: "data-animate-grandparent",
+    },
+  );
   const [hoveredItem, setHoveredItem] = useState<SkillItem | null>(null);
   const { setActiveSkill } = useThreeContext();
 
