@@ -39,7 +39,7 @@ function MainSection() {
 
   return (
     <main
-      className="md:px-39 absolute inset-0 h-full w-full overflow-auto px-12"
+      className="absolute inset-0 h-full w-full overflow-auto px-4 md:px-3"
       ref={scroller}
     >
       <HeroSection />
