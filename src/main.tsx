@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
+import CanvasPortalsContextProvider from "./contexts/CanvasPortalsContext.tsx";
 import ThreeContextProvider from "./contexts/ThreeContext.tsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThreeContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <CanvasPortalsContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CanvasPortalsContextProvider>
     </ThreeContextProvider>
   </React.StrictMode>,
 );
