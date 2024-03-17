@@ -3,9 +3,12 @@ import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import ProjectPreview from "./components/ProjectPreview";
 
 export default function ProjectsSection() {
-  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>();
+  const { parentRef } = useStaggeredFadeIn<HTMLDivElement>({
+    clearProps: "transform",
+  });
   const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>({
     attributeName: "data-animate-grandparent",
+    clearProps: "transform",
   });
 
   return (
