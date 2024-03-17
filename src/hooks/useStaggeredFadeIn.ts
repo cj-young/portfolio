@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import gsap, { CSSPlugin } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
 import { useScrollContext } from "../pages/home/contexts/ScrollContext";
@@ -9,6 +9,7 @@ type TConfig = {
   duration?: number;
   attributeName?: string;
   onAnimationFinished?(): void;
+  clearProps?: string;
 };
 /**
  *
@@ -25,6 +26,7 @@ export default function useStaggeredFadeIn<
   duration = 0.5,
   attributeName = "data-animate",
   onAnimationFinished,
+  clearProps = "",
 }: TConfig = {}) {
   const parentRef = useRef<T>(null);
   const scrollTargetRef = useRef<U>(null);
@@ -34,6 +36,7 @@ export default function useStaggeredFadeIn<
     if (!parentRef.current) return;
     const scrollTrigger = scrollTargetRef.current ?? parentRef.current;
     gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(CSSPlugin);
 
     const childrenToApplyAnimation = [];
     for (const child of parentRef.current.children) {
@@ -55,6 +58,7 @@ export default function useStaggeredFadeIn<
       stagger: 0.25 * duration,
       duration,
       onComplete: onAnimationFinished,
+      clearProps,
     });
   });
 
