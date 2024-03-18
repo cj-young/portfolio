@@ -24,6 +24,8 @@ export type Project = {
   name: string;
   id: string;
   backgroundColor: string;
+  titleColor: string;
+  textColor: string;
   models: ProjectModel[];
 };
 
@@ -32,6 +34,8 @@ const projectConfigs = {
     name: "Com.chess",
     id: "com-chess",
     backgroundColor: "#4e1889",
+    titleColor: "#ede1fa",
+    textColor: "#c4abe0",
     models: [
       {
         isInPreview: true,
@@ -53,12 +57,16 @@ const projectConfigs = {
     name: "Whischat",
     id: "whischat",
     backgroundColor: "#008533",
+    titleColor: "#ffffff",
+    textColor: "#ffffff",
     models: [],
   },
   devforge: {
     name: "DevForge",
     id: "dev-forge",
     backgroundColor: "#cb2835",
+    titleColor: "#ffffff",
+    textColor: "#ffffff",
     models: [],
   },
 } as const satisfies Record<string, Project>;
