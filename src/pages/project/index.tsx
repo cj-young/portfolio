@@ -37,10 +37,10 @@ export default function ProjectPage({ project }: Props) {
       </div>
 
       <div
-        className="absolute inset-0 h-full w-full overflow-auto px-4 md:px-20"
+        className="absolute inset-0 h-full w-full overflow-auto px-10 md:px-20"
         ref={scrollContainerRef}
       >
-        <div className="grid h-full w-full grid-cols-2 gap-8">
+        <div className="h-full w-full md:w-1/2">
           <section
             className="max-h-full w-full py-[5rem]"
             ref={useMergedRef(parentRef, techScrollTargetRef)}
@@ -65,7 +65,7 @@ export default function ProjectPage({ project }: Props) {
 
             <ul
               ref={techParentRef}
-              className="mt-2 flex gap-2"
+              className="mt-2 flex flex-wrap gap-2"
               data-animate-grandparent="false"
             >
               <TechTag
