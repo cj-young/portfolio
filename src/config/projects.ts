@@ -2,6 +2,12 @@ import Pawn from "@/src/components/mesh-containers/Pawn";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { ColorRepresentation, Group } from "three";
 
+import chessAnalyzeImage from "@/src/assets/screenshots/chess-analyze.png";
+import chessGameImage from "@/src/assets/screenshots/chess-game-2.png";
+import chessHomeImage from "@/src/assets/screenshots/chess-home.png";
+
+import editorGalaxyImage from "@/src/assets/screenshots/editor-galaxy.png";
+
 export type ProjectModelProps = {
   color?: ColorRepresentation;
   position?: [number, number, number];
@@ -27,6 +33,8 @@ export type Project = {
   titleColor: string;
   textColor: string;
   models: ProjectModel[];
+  images: string[];
+  previewImageInset: string;
 };
 
 const projectConfigs = {
@@ -52,6 +60,8 @@ const projectConfigs = {
         },
       },
     ],
+    images: [chessGameImage, chessAnalyzeImage, chessHomeImage],
+    previewImageInset: "5rem auto auto -6rem",
   },
   whischat: {
     name: "Whischat",
@@ -60,6 +70,8 @@ const projectConfigs = {
     titleColor: "#ffffff",
     textColor: "#ffffff",
     models: [],
+    images: [],
+    previewImageInset: "0",
   },
   devforge: {
     name: "DevForge",
@@ -68,6 +80,8 @@ const projectConfigs = {
     titleColor: "#ffffff",
     textColor: "#ffffff",
     models: [],
+    images: [editorGalaxyImage],
+    previewImageInset: "-2rem -3rem auto auto",
   },
 } as const satisfies Record<string, Project>;
 
