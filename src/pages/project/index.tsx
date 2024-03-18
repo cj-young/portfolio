@@ -42,7 +42,7 @@ export default function ProjectPage({ project }: Props) {
       >
         <div className="grid h-full w-full grid-cols-2 gap-8">
           <section
-            className="max-h-full w-full pt-[5rem]"
+            className="max-h-full w-full py-[5rem]"
             ref={useMergedRef(parentRef, techScrollTargetRef)}
           >
             <h1
