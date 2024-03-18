@@ -1,9 +1,11 @@
+import LeftArrow from "@/src/assets/icons/arrow-left-solid.svg";
 import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import useMergedRef from "@react-hook/merged-ref";
 import { useRef } from "react";
 import { OutPortal } from "react-reverse-portal";
+import { Link } from "react-router-dom";
 import TechTag from "./components/TechTag";
 
 interface Props {
@@ -48,8 +50,14 @@ export default function ProjectPage({ project }: Props) {
             className="max-h-full w-full py-[5rem]"
             ref={useMergedRef(parentRef, techScrollTargetRef)}
           >
+            <Link className="flex cursor-pointer items-center gap-2" to="/">
+              <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-white/50">
+                <img src={LeftArrow} alt="" className="h-4 w-4" />
+              </div>
+              <span className="font-bold text-white">Back</span>
+            </Link>
             <h1
-              className="text-5xl font-bold"
+              className="mt-4 text-5xl font-bold"
               style={{
                 color: project.titleColor,
               }}
