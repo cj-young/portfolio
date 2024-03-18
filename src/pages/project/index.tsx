@@ -23,6 +23,9 @@ export default function ProjectPage({ project }: Props) {
   const { parentRef: techParentRef, scrollTargetRef: techScrollTargetRef } =
     useStaggeredFadeIn<HTMLUListElement, HTMLDivElement>(scrollContainerRef);
 
+  const { parentRef: buttonsParentRef } =
+    useStaggeredFadeIn<HTMLDivElement>(scrollContainerRef);
+
   const portalNode = portalNodes.get(project.id);
 
   return (
@@ -40,7 +43,7 @@ export default function ProjectPage({ project }: Props) {
         className="absolute inset-0 h-full w-full overflow-auto px-10 md:px-20"
         ref={scrollContainerRef}
       >
-        <div className="h-full w-full md:w-1/2">
+        <div className="w-full md:w-1/2">
           <section
             className="max-h-full w-full py-[5rem]"
             ref={useMergedRef(parentRef, techScrollTargetRef)}
@@ -135,6 +138,19 @@ export default function ProjectPage({ project }: Props) {
               Perspiciatis mollitia eaque beatae. Nulla, voluptates non.
             </p>
           </section>
+        </div>
+      </div>
+      <div className="absolute bottom-0 left-1/2 right-0 top-0 flex flex-col items-center justify-center">
+        <div className="aspect-[16/9] w-[30rem] max-w-[calc(100%_-_2rem)] overflow-hidden rounded-md">
+          <img src={project.images[0]} className="object-cover" />
+        </div>
+        <div className="mt-4 flex gap-4" ref={buttonsParentRef}>
+          <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+            Code
+          </button>
+          <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+            Live
+          </button>
         </div>
       </div>
     </>
