@@ -18,7 +18,11 @@ export default function ProjectPreview({ project }: Props) {
   const linkRef = useRef<HTMLAnchorElement>(null);
   const navigate = useNavigate();
   const modelsRef = useRef<(Group | null)[]>([]);
+  const placeholderButtonsRef = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<HTMLDivElement>(null);
+  const imagesParentRef = useRef<HTMLDivElement>(null);
   const previewContentRef = useRef<HTMLDivElement>(null);
+  const unfilteredImageRef = useRef<HTMLImageElement>(null);
   const { portalNodes } = useCanvasPortals();
 
   const portalNode = portalNodes.get(project.id);
@@ -48,6 +52,11 @@ export default function ProjectPreview({ project }: Props) {
       props: "borderRadius",
     });
 
+    const imagesParent = imagesParentRef.current;
+    const images = imagesRef.current;
+    const placeholderButtons = placeholderButtonsRef.current;
+    const unfilteredImage = unfilteredImageRef.current;
+
     const onComplete = () => {
       navigate(`/projects/${project.id}`);
     };
@@ -56,6 +65,57 @@ export default function ProjectPreview({ project }: Props) {
     link.style.inset = "0";
     link.style.zIndex = "1000";
     link.style.borderRadius = "0";
+
+    if (imagesParent) {
+      imagesParent.style.bottom = "0";
+      imagesParent.style.left = "50%";
+      imagesParent.style.right = "0";
+      imagesParent.style.top = "0";
+    }
+
+    if (images) {
+      images.style.width = "30rem";
+      images.style.maxWidth = "calc(100% - 2rem)";
+      images.style.position = "relative";
+      images.style.inset = "auto";
+    }
+
+    if (placeholderButtons) {
+      placeholderButtons.style.display = "flex";
+    }
+
+    if (imagesParent && images) {
+      const newImageTop = images.offsetTop;
+      const newImageLeft = images.offsetLeft;
+      const newImageWidth = images.offsetWidth;
+      const newImageHeight = images.offsetHeight;
+      images.style.width = "";
+      images.style.maxWidth = "";
+      images.style.position = "";
+      images.style.inset = project.previewImageInset;
+      imagesParent.style.left = "0";
+      gsap.to(images, {
+        left: newImageLeft,
+        top: newImageTop,
+        width: newImageWidth,
+        height: newImageHeight,
+        duration: TRANSITION_DURATION,
+        ease: TRANSITION_EASE,
+      });
+      gsap.to(imagesParent, {
+        left: "50%",
+        duration: TRANSITION_DURATION,
+        ease: TRANSITION_EASE,
+      });
+    }
+
+    if (unfilteredImage) {
+      gsap.to(unfilteredImage, {
+        opacity: 1,
+        duration: TRANSITION_DURATION,
+        ease: TRANSITION_EASE,
+      });
+    }
 
     Flip.from(state, {
       duration: TRANSITION_DURATION,
@@ -108,7 +168,7 @@ export default function ProjectPreview({ project }: Props) {
   return (
     <>
       <Link
-        className="relative block h-full w-full cursor-pointer rounded-md"
+        className="relative block h-full w-full cursor-pointer overflow-hidden rounded-md"
         to={`/projects/${project.id}`}
         ref={linkRef}
         data-flip-id="container"
@@ -123,6 +183,45 @@ export default function ProjectPreview({ project }: Props) {
               isPreview={true}
               modelsRef={modelsRef}
             />
+          </div>
+        )}
+        {project.images.length > 0 && (
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-center"
+            ref={imagesParentRef}
+          >
+            <div
+              className="absolute aspect-[16/9] w-[16rem] overflow-hidden rounded-md"
+              style={{
+                inset: project.previewImageInset,
+              }}
+              ref={imagesRef}
+            >
+              <img
+                src={project.images[0]}
+                className="absolute inset-0 object-cover opacity-[0.5] mix-blend-screen grayscale"
+              />
+              <img
+                src={project.images[0]}
+                className="absolute inset-0 object-cover opacity-[0.20] mix-blend-multiply grayscale"
+              />
+              <img
+                src={project.images[0]}
+                ref={unfilteredImageRef}
+                className="absolute inset-0 object-cover opacity-0"
+              />
+            </div>
+            <div
+              className="invisible mt-4 hidden gap-4"
+              ref={placeholderButtonsRef}
+            >
+              <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                Code
+              </button>
+              <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                Live
+              </button>
+            </div>
           </div>
         )}
         <div ref={previewContentRef}>
