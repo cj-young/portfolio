@@ -6,7 +6,14 @@ import chessAnalyzeImage from "@/src/assets/screenshots/chess-analyze.png";
 import chessGameImage from "@/src/assets/screenshots/chess-game-2.png";
 import chessHomeImage from "@/src/assets/screenshots/chess-home.png";
 
+import editorEditableImage from "@/src/assets/screenshots/editor-editable.png";
 import editorGalaxyImage from "@/src/assets/screenshots/editor-galaxy.png";
+import editorHomeImage from "@/src/assets/screenshots/editor-home.png";
+import editorShareImage from "@/src/assets/screenshots/editor-share-modal.png";
+
+import chatDmImage from "@/src/assets/screenshots/chat-dm-2.png";
+import chatHomeImage from "@/src/assets/screenshots/chat-home.png";
+import chatServerImage from "@/src/assets/screenshots/chat-server.png";
 
 export type ProjectModelProps = {
   color?: ColorRepresentation;
@@ -70,8 +77,8 @@ const projectConfigs = {
     titleColor: "#ffffff",
     textColor: "#ffffff",
     models: [],
-    images: [],
-    previewImageInset: "0",
+    images: [chatServerImage, chatDmImage, chatHomeImage],
+    previewImageInset: "-2rem auto auto 1rem",
   },
   devforge: {
     name: "DevForge",
@@ -80,7 +87,12 @@ const projectConfigs = {
     titleColor: "#ffffff",
     textColor: "#ffffff",
     models: [],
-    images: [editorGalaxyImage],
+    images: [
+      editorGalaxyImage,
+      editorEditableImage,
+      editorHomeImage,
+      editorShareImage,
+    ],
     previewImageInset: "-2rem -3rem auto auto",
   },
 } as const satisfies Record<string, Project>;
