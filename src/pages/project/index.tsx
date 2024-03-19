@@ -83,143 +83,144 @@ export default function ProjectPage({ project }: Props) {
       >
         {portalNode && <OutPortal node={portalNode} isPreview={false} />}
       </div>
-
-      <div
-        className="absolute inset-0 h-full w-full overflow-auto px-10 md:px-20"
-        ref={scrollContainerRef}
-      >
-        <div className="w-full md:w-1/2">
-          <section
-            className="max-h-full w-full py-[5rem]"
-            ref={useMergedRef(parentRef, techScrollTargetRef)}
-          >
-            <Link className="flex cursor-pointer items-center gap-2" to="/">
-              <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-white/25">
-                <img src={LeftArrow} alt="" className="h-4 w-4" />
-              </div>
-              <span className="font-bold text-white">Back</span>
-            </Link>
-            <h1
-              className="mt-4 text-5xl font-bold"
-              style={{
-                color: project.titleColor,
-              }}
-            >
-              Project Name
-            </h1>
-            <p
-              className="mt-4"
-              style={{
-                color: project.textColor,
-              }}
-            >
-              This is a short description of the project. It's just an overview,
-              since there is more information below.
-            </p>
-
-            <ul
-              ref={techParentRef}
-              className="mt-2 flex flex-wrap gap-2"
-              data-animate-grandparent="false"
-            >
-              <TechTag
-                name="Tech 1"
-                textColor="#ffffff"
-                backgroundColor="#ffffff80"
+      <div className="flex flex-col gap-4 py-[3rem]">
+        <div className="relative z-20 flex flex-col items-center justify-center md:absolute md:bottom-0 md:left-1/2 md:right-0 md:top-0">
+          <div className="relative aspect-[16/9] w-[30rem] max-w-[calc(100%_-_2rem)] overflow-hidden rounded-md">
+            <div className="absolute inset-0" key={prevImageIndex}>
+              <img
+                src={project.images[prevImageIndex]}
+                className="object-cover object-left-top"
               />
-              <TechTag
-                name="Tech 2"
-                textColor="#2fde77"
-                backgroundColor="#148f4780"
+            </div>
+            <div
+              className="absolute h-full w-full transition-[inset] duration-200"
+              ref={topImageRef}
+              key={currentImageIndex}
+              style={{
+                display: isInitialImage.current ? "block" : "none",
+              }}
+            >
+              <img
+                src={project.images[currentImageIndex]}
+                className="object-cover object-left-top"
               />
-              <TechTag
-                name="Tech 3"
-                textColor="#e096bc"
-                backgroundColor="#ab487b80"
-              />
-              <TechTag
-                name="Tech 4"
-                textColor="#9cd6e6"
-                backgroundColor="#438ca180"
-              />
-            </ul>
-
-            <h2
-              className="mt-8 text-2xl font-bold"
-              style={{
-                color: project.titleColor,
-              }}
-            >
-              More information
-            </h2>
-            <p
-              className="mt-2 max-w-[50ch]"
-              style={{
-                color: project.textColor,
-              }}
-            >
-              This is a more detailed description of the project. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit. Sed quibusdam
-              voluptatum blanditiis possimus laborum pariatur placeat cum eaque
-              cumque, iste a totam quasi quas sint voluptas magni obcaecati vero
-              veniam et. Numquam nemo quod ea saepe quam sit, unde corrupti
-              assumenda ex doloribus molestiae impedit iure! Itaque harum, ab
-              quos expedita cum ad asperiores molestias dolores voluptatibus
-              veritatis nostrum ipsam.
-            </p>
-            <p
-              className="mt-2 max-w-[50ch]"
-              style={{
-                color: project.textColor,
-              }}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-              ipsum doloremque ipsam non illum amet quos quae necessitatibus
-              iste exercitationem veniam, quidem, sint ratione. Repudiandae
-              itaque quibusdam fugiat, necessitatibus in a voluptatum nobis
-              numquam.
-            </p>
-            <p
-              className="mt-2 max-w-[50ch]"
-              style={{
-                color: project.textColor,
-              }}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perspiciatis mollitia eaque beatae. Nulla, voluptates non.
-            </p>
-          </section>
-        </div>
-      </div>
-      <div className="absolute bottom-0 left-1/2 right-0 top-0 flex flex-col items-center justify-center">
-        <div className="relative aspect-[16/9] w-[30rem] max-w-[calc(100%_-_2rem)] overflow-hidden rounded-md">
-          <div className="absolute inset-0" key={prevImageIndex}>
-            <img
-              src={project.images[prevImageIndex]}
-              className="object-cover object-left-top"
-            />
+            </div>
           </div>
-          <div
-            className="absolute h-full w-full transition-[inset] duration-200"
-            ref={topImageRef}
-            key={currentImageIndex}
-            style={{
-              display: isInitialImage.current ? "block" : "none",
-            }}
-          >
-            <img
-              src={project.images[currentImageIndex]}
-              className="object-cover object-left-top"
-            />
+          <div className="z-10 mt-4 flex gap-4" ref={buttonsParentRef}>
+            <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+              Code
+            </button>
+            <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+              Live
+            </button>
           </div>
         </div>
-        <div className="mt-4 flex gap-4" ref={buttonsParentRef}>
-          <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
-            Code
-          </button>
-          <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
-            Live
-          </button>
+        <div
+          className="relative w-full overflow-auto px-10 md:absolute md:inset-0 md:h-full md:px-20"
+          ref={scrollContainerRef}
+        >
+          <div className="w-full md:w-1/2">
+            <section
+              className="max-h-full w-full md:py-[5rem]"
+              ref={useMergedRef(parentRef, techScrollTargetRef)}
+            >
+              <Link className="flex cursor-pointer items-center gap-2" to="/">
+                <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-white/25">
+                  <img src={LeftArrow} alt="" className="h-4 w-4" />
+                </div>
+                <span className="font-bold text-white">Back</span>
+              </Link>
+              <h1
+                className="mt-4 text-5xl font-bold"
+                style={{
+                  color: project.titleColor,
+                }}
+              >
+                Project Name
+              </h1>
+              <p
+                className="mt-4"
+                style={{
+                  color: project.textColor,
+                }}
+              >
+                This is a short description of the project. It's just an
+                overview, since there is more information below.
+              </p>
+
+              <ul
+                ref={techParentRef}
+                className="mt-2 flex flex-wrap gap-2"
+                data-animate-grandparent="false"
+              >
+                <TechTag
+                  name="Tech 1"
+                  textColor="#ffffff"
+                  backgroundColor="#ffffff80"
+                />
+                <TechTag
+                  name="Tech 2"
+                  textColor="#2fde77"
+                  backgroundColor="#148f4780"
+                />
+                <TechTag
+                  name="Tech 3"
+                  textColor="#e096bc"
+                  backgroundColor="#ab487b80"
+                />
+                <TechTag
+                  name="Tech 4"
+                  textColor="#9cd6e6"
+                  backgroundColor="#438ca180"
+                />
+              </ul>
+
+              <h2
+                className="mt-8 text-2xl font-bold"
+                style={{
+                  color: project.titleColor,
+                }}
+              >
+                More information
+              </h2>
+              <p
+                className="mt-2 max-w-[50ch]"
+                style={{
+                  color: project.textColor,
+                }}
+              >
+                This is a more detailed description of the project. Lorem ipsum
+                dolor sit amet, consectetur adipisicing elit. Sed quibusdam
+                voluptatum blanditiis possimus laborum pariatur placeat cum
+                eaque cumque, iste a totam quasi quas sint voluptas magni
+                obcaecati vero veniam et. Numquam nemo quod ea saepe quam sit,
+                unde corrupti assumenda ex doloribus molestiae impedit iure!
+                Itaque harum, ab quos expedita cum ad asperiores molestias
+                dolores voluptatibus veritatis nostrum ipsam.
+              </p>
+              <p
+                className="mt-2 max-w-[50ch]"
+                style={{
+                  color: project.textColor,
+                }}
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+                ipsum doloremque ipsam non illum amet quos quae necessitatibus
+                iste exercitationem veniam, quidem, sint ratione. Repudiandae
+                itaque quibusdam fugiat, necessitatibus in a voluptatum nobis
+                numquam.
+              </p>
+              <p
+                className="mt-2 max-w-[50ch]"
+                style={{
+                  color: project.textColor,
+                }}
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Perspiciatis mollitia eaque beatae. Nulla, voluptates non.
+              </p>
+            </section>
+          </div>
         </div>
       </div>
     </>
