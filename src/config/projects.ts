@@ -1,6 +1,8 @@
 import Pawn from "@/src/components/mesh-containers/Pawn";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { ColorRepresentation, Group } from "three";
+import BracketsFull from "../components/mesh-containers/BracketsFull";
+import ChatBubble from "../components/mesh-containers/ChatBubble";
 
 import chessAnalyzeImage from "@/src/assets/screenshots/chess-analyze.png";
 import chessGameImage from "@/src/assets/screenshots/chess-game-2.png";
@@ -76,7 +78,23 @@ const projectConfigs = {
     backgroundColor: "#008533",
     titleColor: "#ffffff",
     textColor: "#ffffff",
-    models: [],
+    models: [
+      {
+        isInPreview: true,
+        component: ChatBubble,
+        previewProps: {
+          position: [3.5, 0, 0],
+          rotation: [0, -1.5, 0],
+          scale: [1.2, 1.2, 1.2],
+          color: "#008533",
+        },
+        props: {
+          position: [2.5, 0, 0],
+          scale: [2, 2, 2],
+          color: "#008533",
+        },
+      },
+    ],
     images: [chatServerImage, chatDmImage, chatHomeImage],
     previewImageInset: "-2rem auto auto 1rem",
   },
@@ -86,10 +104,27 @@ const projectConfigs = {
     backgroundColor: "#cb2835",
     titleColor: "#ffffff",
     textColor: "#ffffff",
-    models: [],
+    models: [
+      {
+        isInPreview: true,
+        component: BracketsFull,
+        previewProps: {
+          position: [-2, 0, 0],
+          rotation: [Math.PI / 2, 0.1, -0.25],
+          scale: [0.3, 0.3, 0.3],
+          color: "#cb2835",
+        },
+        props: {
+          position: [4.3, 0, 0],
+          rotation: [Math.PI / 2, 0.1, 0.5],
+          scale: [0.6, 0.6, 0.6],
+          color: "#cb2835",
+        },
+      },
+    ],
     images: [
-      editorGalaxyImage,
       editorEditableImage,
+      editorGalaxyImage,
       editorHomeImage,
       editorShareImage,
     ],
