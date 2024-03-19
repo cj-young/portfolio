@@ -66,18 +66,55 @@ export default function ProjectPreview({ project }: Props) {
     link.style.zIndex = "1000";
     link.style.borderRadius = "0";
 
+    // parent of imagesParent has py-4 in real layout, so margin has to be added
+    const currentParentClasses = [
+      "absolute",
+      "inset-0",
+      "flex",
+      "flex-col",
+      "items-center",
+      "justify-center",
+    ];
+    const transformedParentClasses = [
+      "static",
+      "z-20",
+      "mt-[3rem]",
+      "flex",
+      "flex-col",
+      "items-center",
+      "justify-center",
+      "md:absolute",
+      "md:mt-0",
+      "md:bottom-0",
+      "md:left-1/2",
+      "md:right-0",
+      "md:top-0",
+      "bg-red-500",
+    ];
     if (imagesParent) {
-      imagesParent.style.bottom = "0";
-      imagesParent.style.left = "50%";
-      imagesParent.style.right = "0";
-      imagesParent.style.top = "0";
+      imagesParent.classList.remove(...currentParentClasses);
+      imagesParent.classList.add(...transformedParentClasses);
     }
 
+    const currentImagesClasses = [
+      "absolute",
+      "aspect-[16/9]",
+      "w-[16rem]",
+      "overflow-hidden",
+      "rounded-md",
+    ];
+    const transformedImagesClasses = [
+      "relative",
+      "aspect-[16/9]",
+      "w-[30rem]",
+      "max-w-[calc(100%_-_2rem)]",
+      "overflow-hidden",
+      "rounded-md",
+    ];
     if (images) {
-      images.style.width = "30rem";
-      images.style.maxWidth = "calc(100% - 2rem)";
-      images.style.position = "relative";
       images.style.inset = "auto";
+      images.classList.remove(...currentImagesClasses);
+      images.classList.add(...transformedImagesClasses);
     }
 
     if (placeholderButtons) {
@@ -85,25 +122,21 @@ export default function ProjectPreview({ project }: Props) {
     }
 
     if (imagesParent && images) {
-      const newImageTop = images.offsetTop;
-      const newImageLeft = images.offsetLeft;
+      const imagesBoundingRect = images.getBoundingClientRect();
+      const newImageTop = imagesBoundingRect.top;
+      const newImageLeft = imagesBoundingRect.left;
       const newImageWidth = images.offsetWidth;
       const newImageHeight = images.offsetHeight;
-      images.style.width = "";
-      images.style.maxWidth = "";
-      images.style.position = "";
       images.style.inset = project.previewImageInset;
-      imagesParent.style.left = "0";
+      images.classList.remove(...transformedImagesClasses);
+      images.classList.add(...currentImagesClasses);
+      imagesParent.classList.remove(...transformedParentClasses);
+      imagesParent.classList.add(...currentParentClasses);
       gsap.to(images, {
         left: newImageLeft,
         top: newImageTop,
         width: newImageWidth,
         height: newImageHeight,
-        duration: TRANSITION_DURATION,
-        ease: TRANSITION_EASE,
-      });
-      gsap.to(imagesParent, {
-        left: "50%",
         duration: TRANSITION_DURATION,
         ease: TRANSITION_EASE,
       });
