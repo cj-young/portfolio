@@ -3,7 +3,7 @@ import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import useMergedRef from "@react-hook/merged-ref";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { OutPortal } from "react-reverse-portal";
 import { Link } from "react-router-dom";
 import TechTag from "./components/TechTag";
@@ -12,9 +12,12 @@ interface Props {
   project: Project;
 }
 
+const IMAGE_DURATION = 6000;
+
 export default function ProjectPage({ project }: Props) {
   const scrollContainerRef = useRef(null);
   const { portalNodes } = useCanvasPortals();
+  const topImageRef = useRef<HTMLDivElement>(null);
   const { parentRef } = useStaggeredFadeIn<HTMLHeadingElement>(
     scrollContainerRef,
     {
@@ -29,6 +32,46 @@ export default function ProjectPage({ project }: Props) {
     useStaggeredFadeIn<HTMLDivElement>(scrollContainerRef);
 
   const portalNode = portalNodes.get(project.id);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const prevImageIndex =
+    currentImageIndex === 0 ? project.images.length - 1 : currentImageIndex - 1;
+  const isInitialImage = useRef(true);
+
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      isInitialImage.current = false;
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }, IMAGE_DURATION);
+
+    return () => {
+      clearInterval(imageInterval);
+    };
+  }, [project.images]);
+
+  useEffect(() => {
+    const topImage = topImageRef.current;
+    if (!topImage || isInitialImage.current) {
+      return;
+    }
+
+    const directions = ["top", "left", "bottom", "right"] as const;
+    const animateFrom =
+      directions[Math.floor(Math.random() * directions.length)];
+
+    // Temporarily remove the transition so it immediately
+    // appears outside the container
+    topImage.style.transition = "none";
+    topImage.style[animateFrom] = "-100%";
+    topImage.style.display = "block";
+
+    // Forces a reflow, which moves the div with the transition removed
+    topImage.offsetHeight;
+
+    // Because of the reflow, the div is now outside the container,
+    // and it will transition back in if the transition blocker is removed
+    topImage.style.transition = "";
+    topImage.style[animateFrom] = "0";
+  }, [currentImageIndex]);
 
   return (
     <>
@@ -51,7 +94,7 @@ export default function ProjectPage({ project }: Props) {
             ref={useMergedRef(parentRef, techScrollTargetRef)}
           >
             <Link className="flex cursor-pointer items-center gap-2" to="/">
-              <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-white/50">
+              <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-white/25">
                 <img src={LeftArrow} alt="" className="h-4 w-4" />
               </div>
               <span className="font-bold text-white">Back</span>
@@ -149,8 +192,26 @@ export default function ProjectPage({ project }: Props) {
         </div>
       </div>
       <div className="absolute bottom-0 left-1/2 right-0 top-0 flex flex-col items-center justify-center">
-        <div className="aspect-[16/9] w-[30rem] max-w-[calc(100%_-_2rem)] overflow-hidden rounded-md">
-          <img src={project.images[0]} className="object-cover" />
+        <div className="relative aspect-[16/9] w-[30rem] max-w-[calc(100%_-_2rem)] overflow-hidden rounded-md">
+          <div className="absolute inset-0" key={prevImageIndex}>
+            <img
+              src={project.images[prevImageIndex]}
+              className="object-cover object-left-top"
+            />
+          </div>
+          <div
+            className="absolute h-full w-full transition-[inset] duration-200"
+            ref={topImageRef}
+            key={currentImageIndex}
+            style={{
+              display: isInitialImage.current ? "block" : "none",
+            }}
+          >
+            <img
+              src={project.images[currentImageIndex]}
+              className="object-cover object-left-top"
+            />
+          </div>
         </div>
         <div className="mt-4 flex gap-4" ref={buttonsParentRef}>
           <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
