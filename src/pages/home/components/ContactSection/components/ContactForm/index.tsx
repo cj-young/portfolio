@@ -1,15 +1,10 @@
+import { ContactInfo, contactSchema } from "@/src/lib/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const DEFAULT_ERROR_MESSAGE = "An error occurred, please try again";
 const MAX_MESSAGE_LENGTH = 20_000;
-
-type FormInputs = {
-  name: string;
-  email: string;
-  message: string;
-  _honey: string;
-};
 
 export default function ContactForm() {
   const nameInputId = useId();
@@ -19,33 +14,12 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
-    setError,
-  } = useForm<FormInputs>();
+  } = useForm<ContactInfo>({
+    resolver: zodResolver(contactSchema),
+  });
 
-  async function onSubmit(data: FormInputs) {
+  async function onSubmit(data: ContactInfo) {
     try {
-      let isError = false;
-      if (!data.email) {
-        setError("email", { type: "custom", message: "Email is required" });
-        isError = true;
-      }
-      if (!data.name) {
-        setError("name", { type: "custom", message: "Name is required" });
-        isError = true;
-      }
-
-      if (!data.message) {
-        setError("message", { type: "custom", message: "Message is required" });
-        isError = true;
-      } else if (data.message.length > MAX_MESSAGE_LENGTH) {
-        setError("message", {
-          type: "custom",
-          message: `Message cannot be more than ${MAX_MESSAGE_LENGTH.toLocaleString()} characters long`,
-        });
-        isError = true;
-      }
-      if (isError) return;
-
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/contact-email`,
         {
@@ -89,7 +63,7 @@ export default function ContactForm() {
             {...register("name", { required: true })}
             readOnly={isSubmitting}
           />
-          {errors.name && (
+          {errors.name?.message && (
             <div className="absolute -bottom-1 right-0 z-30 mt-2 translate-y-full rounded-md bg-red-500 px-2 py-1 text-sm font-bold text-white">
               {errors.name.message}
             </div>
@@ -108,10 +82,10 @@ export default function ContactForm() {
             id={emailInputId}
             className={`w-full rounded-[1rem] px-4 py-2 pl-1 outline-none ${isSubmitting ? "cursor-default" : ""}`}
             type="email"
-            {...register("email", { required: true })}
+            {...register("email")}
             readOnly={isSubmitting}
           />
-          {errors.email && (
+          {errors.email?.message && (
             <div className="absolute -bottom-1 right-0 z-30 mt-2 translate-y-full rounded-md bg-red-500 px-2 py-1 text-sm font-bold text-white">
               {errors.email.message}
             </div>
@@ -127,7 +101,7 @@ export default function ContactForm() {
             })}
             readOnly={isSubmitting}
           />
-          {errors.message && (
+          {errors.message?.message && (
             <div className="absolute -bottom-1 right-0 z-30 mt-2 translate-y-full rounded-md bg-red-500 px-2 py-1 text-sm font-bold text-white">
               {errors.message.message}
             </div>
