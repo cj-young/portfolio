@@ -115,7 +115,7 @@ export default function ContactForm() {
           {...register("_honey")}
           readOnly={isSubmitting}
         />
-        <div className="flex items-center gap-4 md:col-span-2">
+        <div className="flex flex-col items-center gap-4 md:col-span-2 md:flex-row">
           <button
             type="submit"
             className={`w-full rounded-[1rem] ${isSubmitting ? "cursor-default bg-gray-500" : "bg-purple"} px-8 py-4 font-bold text-white md:col-span-2 md:w-fit`}
