@@ -14,6 +14,7 @@
 html {
   width: 100%;
   height: 100%;
+  --scrollbar-color: theme(colors.purple);
 }
 
 body {
@@ -34,12 +35,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: theme(colors.purple);
+  background-color: var(--scrollbar-color);
 }
 
 @supports (scrollbar-color: red blue) {
   * {
-    scrollbar-color: theme(colors.purple) transparent;
+    scrollbar-color: var(--scrollbar-color) transparent;
     scrollbar-width: thin;
   }
 }

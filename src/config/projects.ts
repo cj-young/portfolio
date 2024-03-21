@@ -39,6 +39,7 @@ export type Project = {
   name: string;
   id: string;
   backgroundColor: string;
+  secondaryColor: string;
   titleColor: string;
   textColor: string;
   models: ProjectModel[];
@@ -51,6 +52,7 @@ const projectConfigs = {
     name: "Com.chess",
     id: "com-chess",
     backgroundColor: "#4e1889",
+    secondaryColor: "#8832e6",
     titleColor: "#ede1fa",
     textColor: "#c4abe0",
     models: [
@@ -76,6 +78,7 @@ const projectConfigs = {
     name: "Whischat",
     id: "whischat",
     backgroundColor: "#008533",
+    secondaryColor: "#004219",
     titleColor: "#ffffff",
     textColor: "#ffffff",
     models: [
@@ -102,6 +105,7 @@ const projectConfigs = {
     name: "DevForge",
     id: "dev-forge",
     backgroundColor: "#cb2835",
+    secondaryColor: "#660911",
     titleColor: "#ffffff",
     textColor: "#ffffff",
     models: [

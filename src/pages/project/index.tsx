@@ -3,7 +3,7 @@ import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import useMergedRef from "@react-hook/merged-ref";
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import { OutPortal } from "react-reverse-portal";
 import { Link } from "react-router-dom";
 import TechTag from "./components/TechTag";
@@ -83,7 +83,14 @@ export default function ProjectPage({ project }: Props) {
       >
         {portalNode && <OutPortal node={portalNode} isPreview={false} />}
       </div>
-      <div className="flex flex-col gap-4 py-[3rem]">
+      <div
+        className="flex flex-col gap-4 py-[3rem]"
+        style={
+          {
+            "--scrollbar-color": project.secondaryColor,
+          } as CSSProperties
+        }
+      >
         <div className="relative z-20 flex flex-col items-center justify-center md:absolute md:bottom-0 md:left-1/2 md:right-0 md:top-0">
           <div className="relative aspect-[16/9] w-[30rem] max-w-[calc(100%_-_2rem)] overflow-hidden rounded-md">
             <div className="absolute inset-0" key={prevImageIndex}>
