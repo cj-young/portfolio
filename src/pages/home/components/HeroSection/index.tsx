@@ -3,12 +3,15 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 export default function HeroSection() {
   const toAboutButtonRef = useRef(null);
+  const { scroller } = useScrollContext();
 
   function goToAbout() {
-    scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    if (!scroller.current) return;
+    scroller.current.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   }
 
   useGSAP(() => {
