@@ -83,9 +83,9 @@ const projectConfigs = {
         isInPreview: true,
         component: ChatBubble,
         previewProps: {
-          position: [3.5, 0, 0],
-          rotation: [0, -1.5, 0],
-          scale: [1.2, 1.2, 1.2],
+          position: [4, 0, 0],
+          rotation: [0, -2.5, 0],
+          scale: [2, 2, 2],
           color: "#008533",
         },
         props: {
@@ -109,9 +109,9 @@ const projectConfigs = {
         isInPreview: true,
         component: BracketsFull,
         previewProps: {
-          position: [-2, 0, 0],
-          rotation: [Math.PI / 2, 0.1, -0.25],
-          scale: [0.3, 0.3, 0.3],
+          position: [-4, -0.5, 0],
+          rotation: [Math.PI / 2, 0.2, -0.5],
+          scale: [0.5, 0.5, 0.5],
           color: "#cb2835",
         },
         props: {
