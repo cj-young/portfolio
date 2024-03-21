@@ -6,6 +6,7 @@ import useMergedRef from "@react-hook/merged-ref";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { OutPortal } from "react-reverse-portal";
 import { Link } from "react-router-dom";
+import ProjectScreenLoader from "./components/ProjectScreenLoader";
 import TechTag from "./components/TechTag";
 
 interface Props {
@@ -230,6 +231,7 @@ export default function ProjectPage({ project }: Props) {
           </div>
         </div>
       </div>
+      <ProjectScreenLoader project={project} />
     </>
   );
 }
