@@ -26,6 +26,7 @@ export default function HeroSection() {
         start: "top 20%",
         scrub: false,
         toggleActions: "play none none reverse",
+        scroller: scroller.current,
       },
     });
   });
