@@ -91,9 +91,9 @@ const projectConfigs = {
         isInPreview: true,
         component: ChatBubble,
         previewProps: {
-          position: [4, 0, 0],
-          rotation: [0, -2.5, 0],
-          scale: [2, 2, 2],
+          position: [3, 0, 0],
+          rotation: [0, -1.4, 0.1],
+          scale: [1.5, 1.5, 1.5],
           color: "#008533",
         },
         props: {
