@@ -3,9 +3,10 @@ import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import useMergedRef from "@react-hook/merged-ref";
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { CSSProperties, MouseEvent, useEffect, useRef, useState } from "react";
 import { OutPortal } from "react-reverse-portal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProjectScreenLoader from "./components/ProjectScreenLoader";
 import TechTag from "./components/TechTag";
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const IMAGE_DURATION = 6000;
+const FADE_OUT_DURATION = 0.5;
 
 export default function ProjectPage({ project }: Props) {
   const scrollContainerRef = useRef(null);
@@ -31,12 +33,14 @@ export default function ProjectPage({ project }: Props) {
 
   const { parentRef: buttonsParentRef } =
     useStaggeredFadeIn<HTMLDivElement>(scrollContainerRef);
+  const fadeOutBgRef = useRef<HTMLDivElement>(null);
 
   const portalNode = portalNodes.get(project.id);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const prevImageIndex =
     currentImageIndex === 0 ? project.images.length - 1 : currentImageIndex - 1;
   const isInitialImage = useRef(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -73,6 +77,22 @@ export default function ProjectPage({ project }: Props) {
     topImage.style.transition = "";
     topImage.style[animateFrom] = "0";
   }, [currentImageIndex]);
+
+  function handleBackClick(e: MouseEvent) {
+    const fadeOutBg = fadeOutBgRef.current;
+    if (!fadeOutBg) return;
+    e.preventDefault();
+
+    const onComplete = () => {
+      navigate("/");
+    };
+
+    gsap.to(fadeOutBg, {
+      opacity: 1,
+      duration: FADE_OUT_DURATION,
+      onComplete,
+    });
+  }
 
   return (
     <>
@@ -132,7 +152,11 @@ export default function ProjectPage({ project }: Props) {
               className="max-h-full w-full md:py-[5rem]"
               ref={useMergedRef(parentRef, techScrollTargetRef)}
             >
-              <Link className="flex cursor-pointer items-center gap-2" to="/">
+              <Link
+                className="flex cursor-pointer items-center gap-2"
+                to="/"
+                onClick={handleBackClick}
+              >
                 <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-white/25">
                   <img src={LeftArrow} alt="" className="h-4 w-4" />
                 </div>
@@ -220,6 +244,10 @@ export default function ProjectPage({ project }: Props) {
         </div>
       </div>
       <ProjectScreenLoader project={project} />
+      <div
+        className="pointer-events-none fixed inset-0 z-[60] bg-gradient-to-b from-white to-[#eeeeee] opacity-0"
+        ref={fadeOutBgRef}
+      ></div>
     </>
   );
 }
