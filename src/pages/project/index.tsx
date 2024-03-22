@@ -84,7 +84,7 @@ export default function ProjectPage({ project }: Props) {
     e.preventDefault();
 
     const onComplete = () => {
-      navigate("/");
+      navigate("/", { state: { scrolledSectionIndex: 3 } });
     };
 
     gsap.to(fadeOutBg, {
