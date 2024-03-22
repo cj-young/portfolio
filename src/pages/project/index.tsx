@@ -144,7 +144,7 @@ export default function ProjectPage({ project }: Props) {
                   color: project.titleColor,
                 }}
               >
-                Project Name
+                {project.name}
               </h1>
               <p
                 className="mt-4"
