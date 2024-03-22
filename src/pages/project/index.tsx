@@ -161,26 +161,14 @@ export default function ProjectPage({ project }: Props) {
                 className="mt-2 flex flex-wrap gap-2"
                 data-animate-grandparent="false"
               >
-                <TechTag
-                  name="Tech 1"
-                  textColor="#ffffff"
-                  backgroundColor="#ffffff80"
-                />
-                <TechTag
-                  name="Tech 2"
-                  textColor="#2fde77"
-                  backgroundColor="#148f4780"
-                />
-                <TechTag
-                  name="Tech 3"
-                  textColor="#e096bc"
-                  backgroundColor="#ab487b80"
-                />
-                <TechTag
-                  name="Tech 4"
-                  textColor="#9cd6e6"
-                  backgroundColor="#438ca180"
-                />
+                {project.techTags.map((tag) => (
+                  <TechTag
+                    name={tag.name}
+                    textColor={tag.textColor}
+                    backgroundColor={tag.backgroundColor}
+                    key={tag.name}
+                  />
+                ))}
               </ul>
 
               <h2

@@ -19,6 +19,7 @@ import chatDmImage from "@/src/assets/screenshots/chat-dm-2.png";
 import chatHomeImage from "@/src/assets/screenshots/chat-home.png";
 import chatPreviewImage from "@/src/assets/screenshots/chat-preview.png";
 import chatServerImage from "@/src/assets/screenshots/chat-server.png";
+import { TechTag, techTagPresets } from "./techTagPresets";
 
 export type ProjectModelProps = {
   color?: ColorRepresentation;
@@ -49,6 +50,7 @@ export type Project = {
   images: string[];
   previewImage: string;
   previewImageInset: string;
+  techTags: TechTag[];
 };
 
 const projectConfigs = {
@@ -78,6 +80,14 @@ const projectConfigs = {
     images: [chessGameImage, chessAnalyzeImage, chessHomeImage],
     previewImage: chessPreviewImage,
     previewImageInset: "5rem auto auto -6rem",
+    techTags: [
+      techTagPresets.react,
+      techTagPresets.typeScript,
+      techTagPresets.scss,
+      techTagPresets.express,
+      techTagPresets.mongoDb,
+      techTagPresets.socketIo,
+    ],
   },
   whischat: {
     name: "Whischat",
@@ -106,6 +116,15 @@ const projectConfigs = {
     images: [chatServerImage, chatDmImage, chatHomeImage],
     previewImage: chatPreviewImage,
     previewImageInset: "-2rem auto auto 1rem",
+    techTags: [
+      techTagPresets.next,
+      techTagPresets.react,
+      techTagPresets.scss,
+      techTagPresets.typeScript,
+      techTagPresets.mongoDb,
+      techTagPresets.webRtc,
+      techTagPresets.firebase,
+    ],
   },
   devforge: {
     name: "DevForge",
@@ -140,6 +159,12 @@ const projectConfigs = {
     ],
     previewImage: editorPreviewImage,
     previewImageInset: "-2rem -3rem auto auto",
+    techTags: [
+      techTagPresets.angular,
+      techTagPresets.typeScript,
+      techTagPresets.firebase,
+      techTagPresets.tailwind,
+    ],
   },
 } as const satisfies Record<string, Project>;
 
