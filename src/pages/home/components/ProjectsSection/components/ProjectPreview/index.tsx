@@ -231,12 +231,8 @@ export default function ProjectPreview({ project }: Props) {
               ref={imagesRef}
             >
               <img
-                src={project.images[0]}
-                className="absolute inset-0 object-cover opacity-[0.5] mix-blend-screen grayscale"
-              />
-              <img
-                src={project.images[0]}
-                className="absolute inset-0 object-cover opacity-[0.20] mix-blend-multiply grayscale"
+                src={project.previewImage}
+                className="absolute inset-0 object-cover"
               />
               <img
                 src={project.images[0]}

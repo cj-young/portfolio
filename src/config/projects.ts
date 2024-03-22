@@ -7,14 +7,17 @@ import ChatBubble from "../components/mesh-containers/ChatBubble";
 import chessAnalyzeImage from "@/src/assets/screenshots/chess-analyze.png";
 import chessGameImage from "@/src/assets/screenshots/chess-game-2.png";
 import chessHomeImage from "@/src/assets/screenshots/chess-home.png";
+import chessPreviewImage from "@/src/assets/screenshots/chess-preview.png";
 
 import editorEditableImage from "@/src/assets/screenshots/editor-editable.png";
 import editorGalaxyImage from "@/src/assets/screenshots/editor-galaxy.png";
 import editorHomeImage from "@/src/assets/screenshots/editor-home.png";
+import editorPreviewImage from "@/src/assets/screenshots/editor-preview.png";
 import editorShareImage from "@/src/assets/screenshots/editor-share-modal.png";
 
 import chatDmImage from "@/src/assets/screenshots/chat-dm-2.png";
 import chatHomeImage from "@/src/assets/screenshots/chat-home.png";
+import chatPreviewImage from "@/src/assets/screenshots/chat-preview.png";
 import chatServerImage from "@/src/assets/screenshots/chat-server.png";
 
 export type ProjectModelProps = {
@@ -44,6 +47,7 @@ export type Project = {
   textColor: string;
   models: ProjectModel[];
   images: string[];
+  previewImage: string;
   previewImageInset: string;
 };
 
@@ -72,6 +76,7 @@ const projectConfigs = {
       },
     ],
     images: [chessGameImage, chessAnalyzeImage, chessHomeImage],
+    previewImage: chessPreviewImage,
     previewImageInset: "5rem auto auto -6rem",
   },
   whischat: {
@@ -99,6 +104,7 @@ const projectConfigs = {
       },
     ],
     images: [chatServerImage, chatDmImage, chatHomeImage],
+    previewImage: chatPreviewImage,
     previewImageInset: "-2rem auto auto 1rem",
   },
   devforge: {
@@ -132,6 +138,7 @@ const projectConfigs = {
       editorHomeImage,
       editorShareImage,
     ],
+    previewImage: editorPreviewImage,
     previewImageInset: "-2rem -3rem auto auto",
   },
 } as const satisfies Record<string, Project>;
