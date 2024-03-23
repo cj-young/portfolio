@@ -30,7 +30,7 @@ export default function ScrollContextProvider({ children }: Props) {
     if (scrolledSectionIndex !== undefined) {
       scrollerEl.scrollTop = scrolledSectionIndex * scrollerEl.clientHeight;
     }
-  }, []);
+  }, [state]);
 
   function getScrollTop() {
     return scroller.current?.scrollTop ?? 0;
