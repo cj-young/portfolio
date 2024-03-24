@@ -62,7 +62,7 @@ const projectConfigs = {
     backgroundColor: "#4e1889",
     secondaryColor: "#8832e6",
     titleColor: "#ede1fa",
-    textColor: "#c4abe0",
+    textColor: "#d2bee8",
     models: [
       {
         isInPreview: true,
