@@ -197,51 +197,6 @@ export default function ProjectPage({ project }: Props) {
                   />
                 ))}
               </ul>
-
-              {/* <h2
-                className="mt-8 text-2xl font-bold"
-                style={{
-                  color: project.titleColor,
-                }}
-              >
-                More information
-              </h2>
-              <p
-                className="mt-2 max-w-[50ch]"
-                style={{
-                  color: project.textColor,
-                }}
-              >
-                This is a more detailed description of the project. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit. Sed quibusdam
-                voluptatum blanditiis possimus laborum pariatur placeat cum
-                eaque cumque, iste a totam quasi quas sint voluptas magni
-                obcaecati vero veniam et. Numquam nemo quod ea saepe quam sit,
-                unde corrupti assumenda ex doloribus molestiae impedit iure!
-                Itaque harum, ab quos expedita cum ad asperiores molestias
-                dolores voluptatibus veritatis nostrum ipsam.
-              </p>
-              <p
-                className="mt-2 max-w-[50ch]"
-                style={{
-                  color: project.textColor,
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                ipsum doloremque ipsam non illum amet quos quae necessitatibus
-                iste exercitationem veniam, quidem, sint ratione. Repudiandae
-                itaque quibusdam fugiat, necessitatibus in a voluptatum nobis
-                numquam.
-              </p>
-              <p
-                className="mt-2 max-w-[50ch]"
-                style={{
-                  color: project.textColor,
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis mollitia eaque beatae. Nulla, voluptates non.
-              </p> */}
               <div
                 className="
                 prose 
@@ -253,7 +208,7 @@ export default function ProjectPage({ project }: Props) {
                 prose-a:text-[--heading-color] prose-a:my-[0.25em] prose-a:underline
                 prose-li:text-[--text-color] prose-li:my-[0.25em]
                 prose-ul:my-[0.5em]
-                prose-code:relative prose-code:py-1 prose-code:px-2 prose-code:text-[--text-color]
+                prose-code:relative prose-code:px-2 prose-code:text-[--text-color] prose-code:inline-block
                 prose-code:before:content-[''] prose-code:before:w-full  prose-code:before:inset-0 prose-code:before:bg-[--text-color] prose-code:before:opacity-15 prose-code:before:rounded-md prose-code:after:hidden prose-code:before:absolute 
                 mt-8"
                 style={
