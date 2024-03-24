@@ -8,6 +8,7 @@ import { CSSProperties, MouseEvent, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { OutPortal } from "react-reverse-portal";
 import { Link, useNavigate } from "react-router-dom";
+import { useScrollContext } from "../home/contexts/ScrollContext";
 import ProjectScreenLoader from "./components/ProjectScreenLoader";
 import TechTag from "./components/TechTag";
 
@@ -42,6 +43,7 @@ export default function ProjectPage({ project }: Props) {
     currentImageIndex === 0 ? project.images.length - 1 : currentImageIndex - 1;
   const isInitialImage = useRef(true);
   const navigate = useNavigate();
+  const { setScrolledSectionIndex } = useScrollContext();
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -85,7 +87,8 @@ export default function ProjectPage({ project }: Props) {
     e.preventDefault();
 
     const onComplete = () => {
-      navigate("/", { state: { scrolledSectionIndex: 3 } });
+      setScrolledSectionIndex(3);
+      navigate("/");
     };
 
     gsap.to(fadeOutBg, {

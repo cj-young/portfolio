@@ -1,15 +1,18 @@
 import {
+  Dispatch,
   ReactNode,
+  SetStateAction,
   createContext,
   useContext,
   useLayoutEffect,
   useRef,
+  useState,
 } from "react";
-import { useLocation } from "react-router-dom";
 
 type ScrollContextType = {
   scroller: React.RefObject<HTMLDivElement>;
   getScrollTop(): number;
+  setScrolledSectionIndex: Dispatch<SetStateAction<number | null>>;
 };
 
 const ScrollContext = createContext<ScrollContextType>({} as ScrollContextType);
@@ -20,24 +23,26 @@ interface Props {
 
 export default function ScrollContextProvider({ children }: Props) {
   const scroller = useRef<HTMLDivElement>(null);
-  const { state } = useLocation();
+  const [scrolledSectionIndex, setScrolledSectionIndex] = useState<
+    number | null
+  >(null);
 
   useLayoutEffect(() => {
     const scrollerEl = scroller.current;
-    if (!scrollerEl || !state) return;
+    if (!scrollerEl || scrolledSectionIndex === null) return;
 
-    const { scrolledSectionIndex } = state;
-    if (scrolledSectionIndex !== undefined) {
-      scrollerEl.scrollTop = scrolledSectionIndex * scrollerEl.clientHeight;
-    }
-  }, [state]);
+    scrollerEl.scrollTop = scrolledSectionIndex * scrollerEl.clientHeight;
+    setScrolledSectionIndex(null);
+  }, [scrolledSectionIndex]);
 
   function getScrollTop() {
     return scroller.current?.scrollTop ?? 0;
   }
 
   return (
-    <ScrollContext.Provider value={{ scroller, getScrollTop }}>
+    <ScrollContext.Provider
+      value={{ scroller, getScrollTop, setScrolledSectionIndex }}
+    >
       {children}
     </ScrollContext.Provider>
   );
