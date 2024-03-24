@@ -25,48 +25,57 @@ const HORIZONTAL_ROTATION_SPEED = 0.5;
 
 export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const { nodes, materials } = useGLTF(
-    "/3d-models/left-bracket.glb",
-  ) as GLTFResult;
+  const { nodes } = useGLTF("/3d-models/left-bracket.glb") as GLTFResult;
   const groupRef = useRef<THREE.Group>(null);
   const mousePosition = useMousePosition();
   const { getScrollTop } = useScrollContext();
 
-  useFrame(() => {
-    if (!meshRef.current) return;
-    const mesh = meshRef.current;
+  const animateOpacity = (group: THREE.Group, opacity: number) => {
+    for (let child of group.children) {
+      if (child.type === "Mesh") {
+        const mesh = child as THREE.Mesh;
 
-    const group = groupRef.current;
-    if (group) {
-      // z and x are used instead of y and x to account for initial rotation
-      gsap.to(group.rotation, {
-        z: (mousePosition.x - 0.5) * HORIZONTAL_ROTATION_SPEED,
-        x: -(mousePosition.y - 0.5) * VERTICAL_ROTATION_SPEED,
-        duration: 2,
-      });
+        if (mesh.material instanceof Array) {
+          mesh.material[0].transparent = true;
+        } else {
+          mesh.material.transparent = true;
+        }
+        gsap.to(mesh.material, {
+          opacity,
+        });
+      } else if (child.type === "Group") {
+        const childGroup = child as THREE.Group;
+        animateOpacity(childGroup, opacity);
+      }
     }
+  };
+
+  useFrame(() => {
+    const group = groupRef.current;
+    if (!group) return;
+    // z and x are used instead of y and x to account for initial rotation
+    gsap.to(group.rotation, {
+      z: (mousePosition.x - 0.5) * HORIZONTAL_ROTATION_SPEED,
+      x: -(mousePosition.y - 0.5) * VERTICAL_ROTATION_SPEED,
+      duration: 2,
+    });
 
     const framedPercentageScrolled =
       (getScrollTop() - PAGE_INDEX * window.innerHeight) / window.innerHeight;
     if (Math.abs(framedPercentageScrolled) <= FINISHED_ANIMATION_WINDOW) {
-      gsap.to(mesh.scale, {
+      gsap.to(group.scale, {
         x: MAX_SCALE,
         y: MAX_SCALE,
         z: MAX_SCALE,
       });
-      gsap.to(materials["Material.002"], {
-        opacity: 1,
-      });
+      animateOpacity(group, 1);
     } else {
-      gsap.to(mesh.scale, {
+      gsap.to(group.scale, {
         x: MIN_SCALE,
         y: MIN_SCALE,
         z: MIN_SCALE,
       });
-      materials["Material.002"].transparent = true;
-      gsap.to(materials["Material.002"], {
-        opacity: 0,
-      });
+      animateOpacity(group, 0);
     }
   });
 
@@ -77,11 +86,12 @@ export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
           castShadow
           receiveShadow
           geometry={nodes.Cube.geometry}
-          material={materials["Material.002"]}
           position={[1.061, 0, 0]}
           rotation={[-Math.PI, Math.PI / 4, -Math.PI]}
           ref={meshRef}
-        />
+        >
+          <meshStandardMaterial color={0xfafafa} />
+        </mesh>
       </group>
     </group>
   );
