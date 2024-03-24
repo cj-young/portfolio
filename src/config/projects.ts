@@ -97,8 +97,8 @@ const projectConfigs = {
     id: "whischat",
     backgroundColor: "#008533",
     secondaryColor: "#004219",
-    titleColor: "#ffffff",
-    textColor: "#ffffff",
+    titleColor: "#e9f5ed",
+    textColor: "#c5edd4",
     models: [
       {
         isInPreview: true,
@@ -135,8 +135,8 @@ const projectConfigs = {
     id: "dev-forge",
     backgroundColor: "#cb2835",
     secondaryColor: "#660911",
-    titleColor: "#ffffff",
-    textColor: "#ffffff",
+    titleColor: "#f5e9e9",
+    textColor: "#f0d5d5",
     models: [
       {
         isInPreview: true,
