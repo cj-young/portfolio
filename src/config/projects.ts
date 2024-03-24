@@ -19,6 +19,7 @@ import chatDmImage from "@/src/assets/screenshots/chat-dm-2.png";
 import chatHomeImage from "@/src/assets/screenshots/chat-home.png";
 import chatPreviewImage from "@/src/assets/screenshots/chat-preview.png";
 import chatServerImage from "@/src/assets/screenshots/chat-server.png";
+import { CopywriteItem, copywriting } from "./copywrighting";
 import { TechTag, techTagPresets } from "./techTagPresets";
 
 export type ProjectModelProps = {
@@ -51,6 +52,7 @@ export type Project = {
   previewImage: string;
   previewImageInset: string;
   techTags: TechTag[];
+  copywriting: CopywriteItem;
 };
 
 const projectConfigs = {
@@ -88,6 +90,7 @@ const projectConfigs = {
       techTagPresets.mongoDb,
       techTagPresets.socketIo,
     ],
+    copywriting: copywriting.chessApp,
   },
   whischat: {
     name: "Whischat",
@@ -125,6 +128,7 @@ const projectConfigs = {
       techTagPresets.webRtc,
       techTagPresets.firebase,
     ],
+    copywriting: copywriting.chatApp,
   },
   devforge: {
     name: "DevForge",
@@ -165,6 +169,7 @@ const projectConfigs = {
       techTagPresets.firebase,
       techTagPresets.tailwind,
     ],
+    copywriting: copywriting.codeEditor,
   },
 } as const satisfies Record<string, Project>;
 

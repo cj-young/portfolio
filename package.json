@@ -22,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.48.2",
+    "react-markdown": "^9.0.1",
     "react-reverse-portal": "^2.1.1",
     "react-router-dom": "^6.21.3",
     "three": "^0.160.1",
@@ -29,6 +30,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",

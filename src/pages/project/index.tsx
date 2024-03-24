@@ -5,6 +5,7 @@ import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
 import useMergedRef from "@react-hook/merged-ref";
 import gsap from "gsap";
 import { CSSProperties, MouseEvent, useEffect, useRef, useState } from "react";
+import Markdown from "react-markdown";
 import { OutPortal } from "react-reverse-portal";
 import { Link, useNavigate } from "react-router-dom";
 import ProjectScreenLoader from "./components/ProjectScreenLoader";
@@ -176,8 +177,7 @@ export default function ProjectPage({ project }: Props) {
                   color: project.textColor,
                 }}
               >
-                This is a short description of the project. It's just an
-                overview, since there is more information below.
+                {project.copywriting.description}
               </p>
 
               <ul
@@ -195,7 +195,7 @@ export default function ProjectPage({ project }: Props) {
                 ))}
               </ul>
 
-              <h2
+              {/* <h2
                 className="mt-8 text-2xl font-bold"
                 style={{
                   color: project.titleColor,
@@ -238,7 +238,30 @@ export default function ProjectPage({ project }: Props) {
               >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Perspiciatis mollitia eaque beatae. Nulla, voluptates non.
-              </p>
+              </p> */}
+              <div
+                className="
+                prose 
+                prose-h1:text-[--heading-color] prose-h2:text-[--heading-color]
+                prose-headings:text-[--text-color] prose-headings:mb-[0.25em] prose-headings:mt-[1em] 
+                prose-p:text-[--text-color] prose-p:my-[0.25em]
+                prose-strong:text-[--text-color] prose-strong:my-[0.25em]
+                prose-emphasis:text-[--text-color] prose-emphasis:my-[0.25em]
+                prose-a:text-[--heading-color] prose-a:my-[0.25em] prose-a:underline
+                prose-li:text-[--text-color] prose-li:my-[0.25em]
+                prose-ul:my-[0.5em]
+                prose-code:relative prose-code:py-1 prose-code:px-2 prose-code:text-[--text-color]
+                prose-code:before:content-[''] prose-code:before:w-full  prose-code:before:inset-0 prose-code:before:bg-[--text-color] prose-code:before:opacity-15 prose-code:before:rounded-md prose-code:after:hidden prose-code:before:absolute 
+                mt-8"
+                style={
+                  {
+                    "--heading-color": project.titleColor,
+                    "--text-color": project.textColor,
+                  } as CSSProperties
+                }
+              >
+                <Markdown>{project.copywriting.additionalMarkdown}</Markdown>
+              </div>
             </section>
           </div>
         </div>
