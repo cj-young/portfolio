@@ -7,8 +7,6 @@ export type CopywriteItem = {
   additionalMarkdown: string;
 };
 
-console.log("chessAppMarkdown", chessAppMarkdown);
-
 export const copywriting = {
   chessApp: {
     description:
