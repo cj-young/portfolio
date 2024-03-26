@@ -53,6 +53,10 @@ export type Project = {
   previewImageInset: string;
   techTags: TechTag[];
   copywriting: CopywriteItem;
+  links?: {
+    code?: string;
+    live?: string;
+  };
 };
 
 const projectConfigs = {
@@ -91,6 +95,9 @@ const projectConfigs = {
       techTagPresets.socketIo,
     ],
     copywriting: copywriting.chessApp,
+    links: {
+      code: "https://github.com/cj-young/com-chess",
+    },
   },
   whischat: {
     name: "Whischat",
@@ -129,6 +136,10 @@ const projectConfigs = {
       techTagPresets.firebase,
     ],
     copywriting: copywriting.chatApp,
+    links: {
+      code: "https://github.com/cj-young/chat-app",
+      live: "https://chat-app-peach-gamma.vercel.app/",
+    },
   },
   devforge: {
     name: "DevForge",
@@ -170,6 +181,10 @@ const projectConfigs = {
       techTagPresets.tailwind,
     ],
     copywriting: copywriting.codeEditor,
+    links: {
+      code: "https://github.com/cj-young/code-editor",
+      live: "https://dev-forge-nine.vercel.app/",
+    },
   },
 } as const satisfies Record<string, Project>;
 

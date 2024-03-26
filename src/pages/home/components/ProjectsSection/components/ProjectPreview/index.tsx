@@ -240,17 +240,23 @@ export default function ProjectPreview({ project }: Props) {
                 className="absolute inset-0 object-cover opacity-0"
               />
             </div>
-            <div
-              className="invisible mt-4 hidden gap-4"
-              ref={placeholderButtonsRef}
-            >
-              <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
-                Code
-              </button>
-              <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
-                Live
-              </button>
-            </div>
+            {(project.links?.code || project.links?.live) && (
+              <div
+                className="invisible mt-4 hidden gap-4"
+                ref={placeholderButtonsRef}
+              >
+                {project.links?.code && (
+                  <a className="block cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                    Code
+                  </a>
+                )}
+                {project.links?.live && (
+                  <a className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                    Live
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         )}
         <div ref={previewContentRef}>

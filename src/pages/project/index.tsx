@@ -138,14 +138,28 @@ export default function ProjectPage({ project }: Props) {
               />
             </div>
           </div>
-          <div className="z-10 mt-4 flex gap-4" ref={buttonsParentRef}>
-            <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
-              Code
-            </button>
-            <button className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
-              Live
-            </button>
-          </div>
+          {(project.links?.code || project.links?.live) && (
+            <div className="z-10 mt-4 flex gap-4" ref={buttonsParentRef}>
+              {project.links?.code && (
+                <a
+                  className="block cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white"
+                  href={project.links.code}
+                  target="_blank"
+                >
+                  Code
+                </a>
+              )}
+              {project.links?.live && (
+                <a
+                  className="block cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white"
+                  href={project.links.live}
+                  target="_blank"
+                >
+                  Live
+                </a>
+              )}
+            </div>
+          )}
         </div>
         <div
           className="relative w-full overflow-auto px-10 md:absolute md:inset-0 md:h-full md:px-20"
@@ -199,18 +213,18 @@ export default function ProjectPage({ project }: Props) {
               </ul>
               <div
                 className="
-                prose 
-                prose-h1:text-[--heading-color] prose-h2:text-[--heading-color]
-                prose-headings:text-[--text-color] prose-headings:mb-[0.25em] prose-headings:mt-[1em] 
-                prose-p:text-[--text-color] prose-p:my-[0.25em]
-                prose-strong:text-[--text-color] prose-strong:my-[0.25em]
-                prose-emphasis:text-[--text-color] prose-emphasis:my-[0.25em]
-                prose-a:text-[--heading-color] prose-a:my-[0.25em] prose-a:underline
-                prose-li:text-[--text-color] prose-li:my-[0.25em]
-                prose-ul:my-[0.5em]
-                prose-code:relative prose-code:px-2 prose-code:text-[--text-color] prose-code:inline-block
-                prose-code:before:content-[''] prose-code:before:w-full  prose-code:before:inset-0 prose-code:before:bg-[--text-color] prose-code:before:opacity-15 prose-code:before:rounded-md prose-code:after:hidden prose-code:before:absolute 
-                mt-8"
+                prose-emphasis:text-[--text-color] 
+                prose-emphasis:my-[0.25em] prose
+                mt-8 prose-headings:mb-[0.25em] prose-headings:mt-[1em] 
+                prose-headings:text-[--text-color] prose-h1:text-[--heading-color]
+                prose-h2:text-[--heading-color] prose-p:my-[0.25em]
+                prose-p:text-[--text-color] prose-a:my-[0.25em]
+                prose-a:text-[--heading-color] prose-a:underline prose-strong:my-[0.25em]
+                prose-strong:text-[--text-color] prose-code:relative
+                prose-code:inline-block
+                prose-code:px-2 prose-code:text-[--text-color] prose-code:before:absolute prose-code:before:inset-0
+                prose-code:before:w-full prose-code:before:rounded-md  prose-code:before:bg-[--text-color] prose-code:before:opacity-15 prose-code:before:content-[''] prose-code:after:hidden prose-ul:my-[0.5em] prose-li:my-[0.25em] 
+                prose-li:text-[--text-color]"
                 style={
                   {
                     "--heading-color": project.titleColor,
