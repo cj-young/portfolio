@@ -1,4 +1,6 @@
 import LeftArrow from "@/src/assets/icons/arrow-left-solid.svg";
+import gitHubIcon from "@/src/assets/icons/github.svg";
+import globeIcon from "@/src/assets/icons/globe-solid.svg";
 import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
@@ -142,19 +144,25 @@ export default function ProjectPage({ project }: Props) {
             <div className="z-10 mt-4 flex gap-4" ref={buttonsParentRef}>
               {project.links?.code && (
                 <a
-                  className="block cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white"
+                  className="flex cursor-pointer items-center gap-2 rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white"
                   href={project.links.code}
                   target="_blank"
                 >
+                  <img
+                    src={gitHubIcon}
+                    alt="The GitHub logo"
+                    className="h-4 w-4"
+                  />
                   Code
                 </a>
               )}
               {project.links?.live && (
                 <a
-                  className="block cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white"
+                  className="flex cursor-pointer items-center gap-2 rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white"
                   href={project.links.live}
                   target="_blank"
                 >
+                  <img src={globeIcon} alt="A globe icon" className="h-4 w-4" />
                   Live
                 </a>
               )}

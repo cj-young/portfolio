@@ -1,3 +1,5 @@
+import gitHubIcon from "@/src/assets/icons/github.svg";
+import globeIcon from "@/src/assets/icons/globe-solid.svg";
 import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
 import gsap from "gsap";
@@ -246,14 +248,24 @@ export default function ProjectPreview({ project }: Props) {
                 ref={placeholderButtonsRef}
               >
                 {project.links?.code && (
-                  <a className="block cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                  <div className="flex cursor-pointer items-center gap-4 rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                    <img
+                      src={gitHubIcon}
+                      alt="The GitHub logo"
+                      className="h-4 w-4"
+                    />
                     Code
-                  </a>
+                  </div>
                 )}
                 {project.links?.live && (
-                  <a className="cursor-pointer rounded-md bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                  <div className="gap-4rounded-md flex cursor-pointer items-center bg-gray-400 px-3 py-2 text-base font-bold text-white">
+                    <img
+                      src={globeIcon}
+                      alt="A globe icon"
+                      className="h-4 w-4"
+                    />
                     Live
-                  </a>
+                  </div>
                 )}
               </div>
             )}
