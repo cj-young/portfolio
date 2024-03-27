@@ -1,4 +1,8 @@
 import { Canvas } from "@react-three/fiber";
+import gsap from "gsap";
+import CSSPlugin from "gsap/CSSPlugin";
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Route, Routes, useLocation } from "react-router-dom";
 import projectConfigs from "./config/projects";
 import HomePage from "./pages/home";
@@ -7,6 +11,10 @@ import LeftBracket from "./pages/home/components/mesh-containers/LeftBracket";
 import RightBracket from "./pages/home/components/mesh-containers/RightBracket";
 import SkillSectionLogos from "./pages/home/components/mesh-containers/SkillSectionLogos";
 import ProjectPage from "./pages/project";
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(CSSPlugin);
+gsap.registerPlugin(Flip);
 
 export default function App() {
   const { pathname } = useLocation();

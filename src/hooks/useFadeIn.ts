@@ -1,6 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import gsap, { CSSPlugin } from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
 import { useRef } from "react";
 
 type TConfig = {
@@ -23,8 +22,6 @@ export default function useFadeIn<T extends HTMLElement>(
 
   useGSAP(() => {
     if (!elementRef.current) return;
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(CSSPlugin);
 
     gsap.from(elementRef.current, {
       scrollTrigger: {

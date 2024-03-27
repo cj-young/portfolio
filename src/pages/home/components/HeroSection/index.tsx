@@ -1,7 +1,6 @@
 import ArrowIcon from "@/src/assets/icons/arrow-down-solid.svg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
@@ -17,7 +16,6 @@ export default function HeroSection() {
   useGSAP(() => {
     if (!toAboutButtonRef.current) return;
     const toAboutButton = toAboutButtonRef.current;
-    gsap.registerPlugin(ScrollTrigger);
     gsap.to(toAboutButton, {
       opacity: 0,
       translateY: "-=1rem",

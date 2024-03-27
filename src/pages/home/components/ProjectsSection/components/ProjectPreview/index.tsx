@@ -49,7 +49,6 @@ export default function ProjectPreview({ project }: Props) {
     const link = linkRef.current;
     if (!link) return;
 
-    gsap.registerPlugin(Flip);
     const state = Flip.getState(link, {
       props: "borderRadius",
     });
