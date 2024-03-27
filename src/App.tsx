@@ -16,6 +16,9 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(CSSPlugin);
 gsap.registerPlugin(Flip);
 
+// @ts-ignore
+window.scrollTrigger = ScrollTrigger;
+
 export default function App() {
   const { pathname } = useLocation();
 
