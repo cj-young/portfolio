@@ -36,7 +36,9 @@ export default function useStaggeredFadeIn<
   const scrollTargetRef = useRef<U>(null);
 
   useGSAP(() => {
+    console.log("in useGSAP");
     if (!parentRef.current) return;
+    console.log("in useGSAP 2");
     const scrollTrigger = scrollTargetRef.current ?? parentRef.current;
 
     const childrenToApplyAnimation = [];
