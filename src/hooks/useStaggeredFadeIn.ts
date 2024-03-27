@@ -1,5 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 
 type TConfig = {
@@ -36,6 +37,7 @@ export default function useStaggeredFadeIn<
   const scrollTargetRef = useRef<U>(null);
 
   useGSAP(() => {
+    ScrollTrigger.refresh();
     console.log("in useGSAP");
     if (!parentRef.current) return;
     console.log("in useGSAP 2");
