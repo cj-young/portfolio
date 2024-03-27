@@ -1,3 +1,4 @@
+import { useGSAP } from "@gsap/react";
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
@@ -12,9 +13,7 @@ import RightBracket from "./pages/home/components/mesh-containers/RightBracket";
 import SkillSectionLogos from "./pages/home/components/mesh-containers/SkillSectionLogos";
 import ProjectPage from "./pages/project";
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(CSSPlugin);
-gsap.registerPlugin(Flip);
+gsap.registerPlugin(ScrollTrigger, CSSPlugin, Flip, useGSAP);
 
 // @ts-ignore
 window.scrollTrigger = ScrollTrigger;
