@@ -19,6 +19,7 @@ export default function ContactForm() {
   });
 
   async function onSubmit(data: ContactInfo) {
+    setFormError("");
     try {
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/contact-email`,
@@ -33,8 +34,11 @@ export default function ContactForm() {
       );
 
       const resData = await res.json();
-      if (!res.ok || !resData.success) {
+      console.log(resData);
+      if (!res.ok || resData.message !== "success") {
         setFormError(DEFAULT_ERROR_MESSAGE);
+      } else {
+        setFormError("");
       }
     } catch (error) {
       setFormError(DEFAULT_ERROR_MESSAGE);
