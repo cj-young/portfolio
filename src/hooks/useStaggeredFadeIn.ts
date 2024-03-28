@@ -1,7 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type TConfig = {
   autoApply?: boolean;
@@ -36,12 +35,8 @@ export default function useStaggeredFadeIn<
   // A ref of the element that is being scrolled
   const scrollTargetRef = useRef<U>(null);
 
-  useGSAP(() => {
-    ScrollTrigger.refresh();
-    console.log("in useGSAP");
+  const { contextSafe } = useGSAP(() => {
     if (!parentRef.current) return;
-    console.log("in useGSAP 2");
-    const scrollTrigger = scrollTargetRef.current ?? parentRef.current;
 
     const childrenToApplyAnimation = [];
     for (const child of parentRef.current.children) {
@@ -50,22 +45,42 @@ export default function useStaggeredFadeIn<
         childrenToApplyAnimation.push(child);
       }
     }
-    gsap.from(childrenToApplyAnimation, {
-      scrollTrigger: {
-        trigger: scrollTrigger,
-        start: "top 75%",
-        scrub: false,
-        // markers: true,
-        scroller: containerRef.current,
-      },
+
+    gsap.set(childrenToApplyAnimation, {
       opacity: 0,
       translateY: "+=1rem",
-      stagger: 0.25 * duration,
-      duration,
-      onComplete: onAnimationFinished,
-      clearProps,
     });
   });
+
+  useEffect(() => {
+    contextSafe(() => {
+      if (!parentRef.current) return;
+      const scrollTrigger = scrollTargetRef.current ?? parentRef.current;
+
+      const childrenToApplyAnimation = [];
+      for (const child of parentRef.current.children) {
+        const shouldApply = child.getAttribute(attributeName) ?? autoApply;
+        if (shouldApply && shouldApply !== "false") {
+          childrenToApplyAnimation.push(child);
+        }
+      }
+      gsap.to(childrenToApplyAnimation, {
+        scrollTrigger: {
+          trigger: scrollTrigger,
+          start: "top 75%",
+          scrub: false,
+          // markers: true,
+          scroller: containerRef.current,
+        },
+        opacity: 1,
+        translateY: "-=1rem",
+        stagger: 0.25 * duration,
+        duration,
+        onComplete: onAnimationFinished,
+        clearProps,
+      });
+    })();
+  }, []);
 
   return { parentRef, scrollTargetRef };
 }

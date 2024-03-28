@@ -1,6 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type TConfig = {
   duration?: number;
@@ -20,23 +20,34 @@ export default function useFadeIn<T extends HTMLElement>(
 ) {
   const elementRef = useRef<T>(null);
 
-  useGSAP(() => {
+  const { contextSafe } = useGSAP(() => {
     if (!elementRef.current) return;
 
-    gsap.from(elementRef.current, {
-      scrollTrigger: {
-        start: "top 75%",
-        scrub: false,
-        // markers: true,
-        scroller: containerRef.current,
-      },
+    gsap.set(elementRef.current, {
       opacity: 0,
-      translateY: "+=1rem",
-      duration,
-      onComplete: onAnimationFinished,
-      clearProps,
+      translateY: "-=1rem",
     });
   });
+
+  useEffect(() => {
+    contextSafe(() => {
+      if (!elementRef.current) return;
+
+      gsap.to(elementRef.current, {
+        scrollTrigger: {
+          start: "top 75%",
+          scrub: false,
+          // markers: true,
+          scroller: containerRef.current,
+        },
+        opacity: 1,
+        translateY: "-=1rem",
+        duration,
+        onComplete: onAnimationFinished,
+        clearProps,
+      });
+    })();
+  }, []);
 
   return { elementRef };
 }

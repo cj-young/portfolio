@@ -1,7 +1,7 @@
 import ArrowIcon from "@/src/assets/icons/arrow-down-solid.svg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
 export default function HeroSection() {
@@ -13,21 +13,25 @@ export default function HeroSection() {
     scroller.current.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   }
 
-  useGSAP(() => {
-    if (!toAboutButtonRef.current) return;
-    const toAboutButton = toAboutButtonRef.current;
-    gsap.to(toAboutButton, {
-      opacity: 0,
-      translateY: "-=1rem",
-      scrollTrigger: {
-        trigger: toAboutButton,
-        start: "top 20%",
-        scrub: false,
-        toggleActions: "play none none reverse",
-        scroller: scroller.current,
-      },
-    });
-  });
+  const { contextSafe } = useGSAP();
+
+  useEffect(() => {
+    contextSafe(() => {
+      if (!toAboutButtonRef.current) return;
+      const toAboutButton = toAboutButtonRef.current;
+      gsap.to(toAboutButton, {
+        opacity: 0,
+        translateY: "-=1rem",
+        scrollTrigger: {
+          trigger: toAboutButton,
+          start: "top 20%",
+          scrub: false,
+          toggleActions: "play none none reverse",
+          scroller: scroller.current,
+        },
+      });
+    })();
+  }, []);
 
   return (
     <section className="relative flex h-screen w-full items-center justify-center">
