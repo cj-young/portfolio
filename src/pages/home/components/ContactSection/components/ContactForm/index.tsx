@@ -4,12 +4,14 @@ import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const DEFAULT_ERROR_MESSAGE = "An error occurred, please try again";
+const SUBMIT_SUCCESS_MESSAGE = "Message sent!";
 const MAX_MESSAGE_LENGTH = 20_000;
 
 export default function ContactForm() {
   const nameInputId = useId();
   const emailInputId = useId();
   const [formError, setFormError] = useState("");
+  const [formMessage, setFormMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -39,6 +41,7 @@ export default function ContactForm() {
         setFormError(DEFAULT_ERROR_MESSAGE);
       } else {
         setFormError("");
+        setFormMessage(SUBMIT_SUCCESS_MESSAGE);
       }
     } catch (error) {
       setFormError(DEFAULT_ERROR_MESSAGE);
@@ -126,7 +129,11 @@ export default function ContactForm() {
           >
             Send
           </button>
-          {formError && <span className="text-red-600">* {formError}</span>}
+          {formError ? (
+            <span className="text-red-600">* {formError}</span>
+          ) : formMessage ? (
+            <span className="text-purple">{formMessage}</span>
+          ) : null}
         </div>
       </form>
     </>
