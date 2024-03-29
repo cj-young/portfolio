@@ -97,6 +97,7 @@ const projectConfigs = {
     copywriting: copywriting.chessApp,
     links: {
       code: "https://github.com/cj-young/com-chess",
+      live: "https://com-chess.vercel.app/",
     },
   },
   whischat: {
