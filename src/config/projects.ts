@@ -8,6 +8,19 @@ import chessAnalyzeImage from "@/src/assets/screenshots/chess-analyze.png";
 import chessGameImage from "@/src/assets/screenshots/chess-game-2.png";
 import chessHomeImage from "@/src/assets/screenshots/chess-home.png";
 import chessPreviewImage from "@/src/assets/screenshots/chess-preview.png";
+const chessDemoIdentifier = "demo@demo.com";
+const chessDemoPassword = "ft3$msA9e";
+const chessDemoParams = new URLSearchParams();
+chessDemoParams.set("demoIdentifier", chessDemoIdentifier);
+chessDemoParams.set("demoPassword", chessDemoPassword);
+// Demo 1 credentials (public):
+//demo@demo.com
+//Demo1
+//ft3$msA9e
+// Demo 2 credentials (public):
+//demo2@demo.com
+//Demo2
+//5!bFgPqR
 
 import editorEditableImage from "@/src/assets/screenshots/editor-editable.png";
 import editorGalaxyImage from "@/src/assets/screenshots/editor-galaxy.png";
@@ -97,7 +110,7 @@ const projectConfigs = {
     copywriting: copywriting.chessApp,
     links: {
       code: "https://github.com/cj-young/com-chess",
-      live: "https://com-chess.vercel.app/",
+      live: `https://com-chess.vercel.app/login?${chessDemoParams.toString()}`,
     },
   },
   whischat: {
