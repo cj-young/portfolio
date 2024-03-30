@@ -48,10 +48,11 @@ export default function HeroSection() {
         className="absolute bottom-20 mx-auto flex cursor-pointer flex-col items-center justify-center md:bottom-8"
         onClick={goToAbout}
         ref={toAboutButtonRef}
+        aria-label="Scroll to About Me section"
       >
         <span className="text-xl font-bold text-purple">About Me</span>
         <div className="flex h-8 w-8 items-center justify-center rounded-[1000vmax] bg-gray-400">
-          <img src={ArrowIcon} className="h-4 w-4 " />
+          <img src={ArrowIcon} className="h-4 w-4 " alt="" />
         </div>
       </button>
     </section>
