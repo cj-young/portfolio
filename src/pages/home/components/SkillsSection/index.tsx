@@ -1,11 +1,11 @@
 import { useThreeContext } from "@/src/contexts/ThreeContext";
 import useStaggeredFadeIn from "@/src/hooks/useStaggeredFadeIn";
-import { SkillItem } from "@/types/three";
+import { SkillId } from "@/types/three";
 import useMergedRef from "@react-hook/merged-ref";
 import { CSSProperties, useEffect, useState } from "react";
 import { useScrollContext } from "../../contexts/ScrollContext";
 import DynamicSubtitle from "./components/DynamicSubtitle";
-import skillImages from "./skill-images";
+import { skills } from "./skill-images";
 
 const NUM_SKILL_NODES = 9;
 const SKILL_NODE_OFFSET_ANGLE = 60;
@@ -41,7 +41,7 @@ export default function SkillsSection() {
       attributeName: "data-animate-grandparent",
     },
   );
-  const [hoveredItem, setHoveredItem] = useState<SkillItem | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<SkillId | null>(null);
   const { setActiveSkill } = useThreeContext();
 
   useEffect(() => {
@@ -67,17 +67,18 @@ export default function SkillsSection() {
           ref={mobileParentRef}
           data-animate-grandparent="false"
         >
-          {skillImages.map((image) => (
+          {skills.map((skill) => (
             <SkillImage
               isMobile={true}
-              imageUrl={image.imageUrl}
-              imageWidth={image.width}
-              key={image.id}
-              isHovering={hoveredItem === image.id}
-              onMouseEnter={() => setHoveredItem(image.id)}
+              imageUrl={skill.imageUrl}
+              imageWidth={skill.imageWidth}
+              key={skill.id}
+              isHovering={hoveredItem === skill.id}
+              onMouseEnter={() => setHoveredItem(skill.id)}
               onMouseLeave={() =>
-                setHoveredItem((h) => (h === image.id ? null : h))
+                setHoveredItem((h) => (h === skill.id ? null : h))
               }
+              name={skill.text}
             />
           ))}
         </div>
@@ -86,18 +87,19 @@ export default function SkillsSection() {
           ref={largeParentRef}
           data-animate-grandparent="false"
         >
-          {skillImages.map((image, i) => (
+          {skills.map((skill, i) => (
             <SkillImage
               isMobile={false}
-              imageUrl={image.imageUrl}
+              imageUrl={skill.imageUrl}
               translation={getSkillNodeTranslations(i)}
-              imageWidth={image.width}
-              key={image.id}
-              isHovering={hoveredItem === image.id}
-              onMouseEnter={() => setHoveredItem(image.id)}
+              imageWidth={skill.imageWidth}
+              key={skill.id}
+              isHovering={hoveredItem === skill.id}
+              onMouseEnter={() => setHoveredItem(skill.id)}
               onMouseLeave={() =>
-                setHoveredItem((h) => (h === image.id ? null : h))
+                setHoveredItem((h) => (h === skill.id ? null : h))
               }
+              name={skill.text}
             />
           ))}
         </div>
@@ -114,6 +116,7 @@ interface SkillImageProps {
   isHovering?: boolean;
   onMouseEnter?(): any;
   onMouseLeave?(): any;
+  name: string;
 }
 
 function SkillImage({
@@ -124,6 +127,7 @@ function SkillImage({
   onMouseEnter,
   onMouseLeave,
   isHovering,
+  name,
 }: SkillImageProps) {
   return !isMobile ? (
     <div
@@ -146,6 +150,7 @@ function SkillImage({
           width: imageWidth,
           scale: isHovering ? "110%" : "100%",
         }}
+        alt={`${name} logo`}
       />
     </div>
   ) : (
@@ -166,6 +171,7 @@ function SkillImage({
           width: imageWidth,
           scale: isHovering ? "110%" : "100%",
         }}
+        alt={`${name} logo`}
       />
     </div>
   );

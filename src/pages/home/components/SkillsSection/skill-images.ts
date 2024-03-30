@@ -7,58 +7,76 @@ import reactIcon from "@/src/assets/skill-icons/react.svg";
 import scssIcon from "@/src/assets/skill-icons/scss.svg";
 import tailwindIcon from "@/src/assets/skill-icons/tailwind.svg";
 import tsIcon from "@/src/assets/skill-icons/ts-logo.svg";
-import { SkillItem } from "@/types/three";
+import { SkillId } from "@/types/three";
 
-const skillImages: {
+export const skills: {
   imageUrl: string;
-  width: string | number;
-  id: SkillItem;
+  imageWidth: string | number;
+  id: SkillId;
+  color: string;
+  text: string;
 }[] = [
   {
     imageUrl: htmlIcon,
-    width: "60%",
+    imageWidth: "60%",
     id: "html",
+    color: "#e44d26",
+    text: "HTML",
   },
   {
     imageUrl: cssIcon,
-    width: "60%",
+    imageWidth: "60%",
     id: "css",
+    color: "#264de4",
+    text: "CSS",
   },
   {
     imageUrl: jsIcon,
-    width: "50%",
+    imageWidth: "50%",
     id: "js",
+    color: "#d6be02",
+    text: "JavaScript",
   },
   {
     imageUrl: tsIcon,
-    width: "50%",
+    imageWidth: "50%",
     id: "ts",
+    color: "#3178c6",
+    text: "TypeScript",
   },
   {
     imageUrl: reactIcon,
-    width: "60%",
+    imageWidth: "60%",
     id: "react",
+    color: "#00a8c7",
+    text: "React",
   },
   {
     imageUrl: nextIcon,
-    width: "50%",
+    imageWidth: "50%",
     id: "next",
+    color: "#000000",
+    text: "Next.js",
   },
   {
     imageUrl: scssIcon,
-    width: "60%",
+    imageWidth: "60%",
     id: "scss",
+    color: "#cd6799",
+    text: "SCSS/SASS",
   },
   {
     imageUrl: tailwindIcon,
-    width: "60%",
+    imageWidth: "60%",
     id: "tailwind",
+    color: "#38bdf8",
+    text: "Tailwind",
   },
   {
     imageUrl: gitIcon,
-    width: "50%",
+    imageWidth: "50%",
     id: "git",
+    color: "#f05033",
+    text: "Git",
   },
 ];
-
-export default skillImages;

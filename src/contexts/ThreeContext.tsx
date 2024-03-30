@@ -1,4 +1,4 @@
-import { SkillItem } from "@/types/three";
+import { SkillId } from "@/types/three";
 import {
   MutableRefObject,
   ReactNode,
@@ -9,7 +9,7 @@ import {
 
 type ThreeContextType = {
   activeSkill: MutableRefObject<SkillObject>;
-  setActiveSkill(skill: SkillItem | null): void;
+  setActiveSkill(skill: SkillId | null): void;
 };
 
 const ThreeContext = createContext<ThreeContextType>({} as ThreeContextType);
@@ -19,13 +19,13 @@ type Props = {
 };
 
 type SkillObject = {
-  id: null | SkillItem;
+  id: null | SkillId;
 };
 
 export default function ThreeContextProvider({ children }: Props) {
   const activeSkill = useRef<SkillObject>({ id: null });
 
-  function setActiveSkill(skill: SkillItem | null) {
+  function setActiveSkill(skill: SkillId | null) {
     activeSkill.current.id = skill;
   }
 

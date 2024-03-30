@@ -1,4 +1,4 @@
-export type SkillItem =
+export type SkillId =
   | "css"
   | "html"
   | "js"

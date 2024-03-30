@@ -1,6 +1,6 @@
 import { useThreeContext } from "@/src/contexts/ThreeContext";
 import { useScrollContext } from "@/src/pages/home/contexts/ScrollContext";
-import { SkillItem } from "@/types/three";
+import { SkillId } from "@/types/three";
 import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
@@ -17,7 +17,7 @@ import TypeScriptLogo from "../TypeScript";
 
 type Props = {
   position: [number, number, number];
-  skillId: SkillItem;
+  skillId: SkillId;
 };
 
 const MAX_X_ROTATION = Math.PI / 8;
