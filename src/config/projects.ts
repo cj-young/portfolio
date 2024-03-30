@@ -14,13 +14,13 @@ const chessDemoParams = new URLSearchParams();
 chessDemoParams.set("demoIdentifier", chessDemoIdentifier);
 chessDemoParams.set("demoPassword", chessDemoPassword);
 // Demo 1 credentials (public):
-//demo@demo.com
-//Demo1
-//ft3$msA9e
+//Email: demo@demo.com
+//Username: Demo1
+//Password: ft3$msA9e
 // Demo 2 credentials (public):
-//demo2@demo.com
-//Demo2
-//5!bFgPqR
+//Email: demo2@demo.com
+//Username: Demo2
+//Password: 5!bFgPqR
 
 import editorEditableImage from "@/src/assets/screenshots/editor-editable.png";
 import editorGalaxyImage from "@/src/assets/screenshots/editor-galaxy.png";
@@ -34,7 +34,17 @@ import chatPreviewImage from "@/src/assets/screenshots/chat-preview.png";
 import chatServerImage from "@/src/assets/screenshots/chat-server.png";
 import { CopywriteItem, copywriting } from "./copywrighting";
 import { TechTag, techTagPresets } from "./techTagPresets";
+const chatDemoUsername = "demoone";
+const chatDemoPassword = "0!OBr$5";
+const chatDemoParams = new URLSearchParams();
+chatDemoParams.set("demoUsername", chatDemoUsername);
+chatDemoParams.set("demoPassword", chatDemoPassword);
 
+// Demo 1 credentials (public):
+// Email: demo@demo.com
+// Username: demoone
+// Display Name: Demo Uno
+// Password: 0!OBr$5
 export type ProjectModelProps = {
   color?: ColorRepresentation;
   position?: [number, number, number];
@@ -152,7 +162,7 @@ const projectConfigs = {
     copywriting: copywriting.chatApp,
     links: {
       code: "https://github.com/cj-young/chat-app",
-      live: "https://chat-app-peach-gamma.vercel.app/",
+      live: `https://chat-app-peach-gamma.vercel.app/login?${chatDemoParams.toString()}`,
     },
   },
   devforge: {
