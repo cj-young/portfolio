@@ -211,7 +211,7 @@ export default function ProjectPreview({ project }: Props) {
         }}
       >
         {portalNode && (
-          <div className="pointer-events-none absolute inset-0">
+          <div className="pointer-events-none absolute inset-0" aria-hidden>
             <OutPortal
               node={portalNode}
               isPreview={true}
@@ -223,6 +223,7 @@ export default function ProjectPreview({ project }: Props) {
           <div
             className="absolute inset-0 flex flex-col items-center justify-center"
             ref={imagesParentRef}
+            aria-hidden
           >
             <div
               className="absolute aspect-[16/9] w-[16rem] overflow-hidden rounded-md"
@@ -234,11 +235,13 @@ export default function ProjectPreview({ project }: Props) {
               <img
                 src={project.previewImage}
                 className="absolute inset-0 object-cover"
+                alt=""
               />
               <img
                 src={project.images[0]}
                 ref={unfilteredImageRef}
                 className="absolute inset-0 object-cover opacity-0"
+                alt=""
               />
             </div>
             {(project.links?.code || project.links?.live) && (
