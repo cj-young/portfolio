@@ -135,8 +135,8 @@ const projectConfigs = {
         isInPreview: true,
         component: ChatBubble,
         previewProps: {
-          position: [3, 0, 0],
-          rotation: [0, -1.4, 0.1],
+          position: [3.4, 0, 0],
+          rotation: [0, -1.4, 0.2],
           scale: [1.5, 1.5, 1.5],
           color: "#008533",
         },
@@ -177,9 +177,9 @@ const projectConfigs = {
         isInPreview: true,
         component: BracketsFull,
         previewProps: {
-          position: [-4, -0.5, 0],
-          rotation: [Math.PI / 2, 0.2, -0.5],
-          scale: [0.5, 0.5, 0.5],
+          position: [-2.5, -0.75, 0],
+          rotation: [Math.PI / 2, 0, -0.1],
+          scale: [0.3, 0.3, 0.3],
           color: "#cb2835",
         },
         props: {
