@@ -31,10 +31,10 @@ export default function ProjectsSection() {
           <ProjectPreview project={projectConfigs.chessApp} />
         </div>
         <div className="aspect-square w-full max-w-[15rem] rounded-[1rem] bg-gray-200 md:aspect-auto md:h-full md:max-w-none">
-          <ProjectPreview project={projectConfigs.devforge} />
+          <ProjectPreview project={projectConfigs.whischat} />
         </div>
         <div className="aspect-square w-full max-w-[15rem] rounded-[1rem] bg-gray-200 md:aspect-auto md:h-full md:max-w-none">
-          <ProjectPreview project={projectConfigs.whischat} />
+          <ProjectPreview project={projectConfigs.devforge} />
         </div>
       </div>
     </section>
