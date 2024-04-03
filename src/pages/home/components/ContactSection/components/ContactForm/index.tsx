@@ -122,13 +122,21 @@ export default function ContactForm() {
           {...register("_honey")}
           readOnly={isSubmitting}
         />
-        <div className="flex flex-col items-center gap-4 md:col-span-2 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 md:col-span-2 md:flex-row">
           <button
             type="submit"
-            className={`w-full rounded-[1rem] ${isSubmitting ? "cursor-default bg-gray-500" : "bg-purple"} px-8 py-4 font-bold text-white md:col-span-2 md:w-fit`}
+            className={`w-full rounded-[1rem] ${isSubmitting ? "cursor-default bg-gray-500" : "bg-purple"} px-8 py-4 font-bold text-white md:w-fit`}
           >
             Send
           </button>
+          <div className="ml-auto flex w-full items-center justify-center text-center md:w-fit md:justify-start">
+            <span>
+              &hellip; or send me an email at{" "}
+              <span className="text-purple">seejaewhy@gmail.com</span>.
+            </span>
+          </div>
+        </div>
+        <div className="flex justify-center md:justify-start">
           {formError ? (
             <span className="text-red-600">* {formError}</span>
           ) : formMessage ? (
