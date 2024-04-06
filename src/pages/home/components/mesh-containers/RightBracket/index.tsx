@@ -94,7 +94,7 @@ export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
           position={[-3.561, 0, 0]}
           rotation={[0, -Math.PI / 4, 0]}
         >
-          <meshStandardMaterial color={0xfafafa} />
+          <meshStandardMaterial color={0xfafafa} opacity={0} />
         </mesh>
         <mesh
           castShadow
@@ -104,7 +104,7 @@ export default function RightBracket(props: JSX.IntrinsicElements["group"]) {
           rotation={[0, -Math.PI / 9, 0]}
           scale={[1, 1, 1.215]}
         >
-          <meshStandardMaterial color={0xfafafa} />
+          <meshStandardMaterial color={0xfafafa} opacity={0} />
         </mesh>
       </group>
     </group>

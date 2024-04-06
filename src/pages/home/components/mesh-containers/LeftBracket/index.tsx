@@ -90,7 +90,7 @@ export default function LeftBracket(props: JSX.IntrinsicElements["group"]) {
           rotation={[-Math.PI, Math.PI / 4, -Math.PI]}
           ref={meshRef}
         >
-          <meshStandardMaterial color={0xfafafa} />
+          <meshStandardMaterial color={0xfafafa} opacity={0} />
         </mesh>
       </group>
     </group>
