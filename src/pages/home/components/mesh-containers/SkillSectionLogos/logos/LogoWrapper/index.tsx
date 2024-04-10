@@ -1,6 +1,7 @@
 import { useThreeContext } from "@/src/contexts/ThreeContext";
 import { useScrollContext } from "@/src/pages/home/contexts/ScrollContext";
 import { SkillId } from "@/types/three";
+import { useProgress } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
@@ -38,6 +39,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
   const innerRef = useRef<Group>(null);
   const { activeSkill } = useThreeContext();
   const { camera } = useThree();
+  const { progress } = useProgress();
   const { getScrollTop } = useScrollContext();
   const rotationSpeed = useRef({
     x:
@@ -124,12 +126,13 @@ export default function LogoWrapper({ position, skillId }: Props) {
   });
 
   useEffect(() => {
+    if (progress < 100) return;
     const group = innerRef.current;
     if (!group) return;
     group.lookAt(camera.position);
     const { x, y, z } = group.rotation;
     startingRotation.current = { x, y, z };
-  }, []);
+  }, [progress]);
 
   return skillId === "js" ? (
     <JavaScriptLogo position={position} innerRef={innerRef} />
