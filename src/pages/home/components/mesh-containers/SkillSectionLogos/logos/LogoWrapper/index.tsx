@@ -9,10 +9,12 @@ import CssLogo from "../Css";
 import GitLogo from "../Git";
 import HtmlLogo from "../Html";
 import JavaScriptLogo from "../JavaScript";
+import JestLogo from "../Jest";
 import NextLogo from "../Next";
 import ReactLogo from "../React";
 import ScssLogo from "../Scss";
 import TailwindLogo from "../Tailwind";
+import ThreeLogo from "../Three";
 import TypeScriptLogo from "../TypeScript";
 
 type Props = {
@@ -147,5 +149,9 @@ export default function LogoWrapper({ position, skillId }: Props) {
     <TailwindLogo position={position} innerRef={innerRef} />
   ) : skillId === "git" ? (
     <GitLogo position={position} innerRef={innerRef} />
+  ) : skillId === "jest" ? (
+    <JestLogo position={position} innerRef={innerRef} />
+  ) : skillId === "three" ? (
+    <ThreeLogo position={position} innerRef={innerRef} />
   ) : null;
 }

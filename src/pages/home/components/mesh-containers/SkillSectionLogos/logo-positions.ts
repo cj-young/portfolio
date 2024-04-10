@@ -101,3 +101,27 @@ export const gitPositions: [number, number, number][] = [
   [12, -4, -5],
   [8, 3, -5],
 ];
+
+export const jestPositions: [number, number, number][] = [
+  [-8, 0, -5],
+  [-9, -4, -5],
+  [-12, 3, -5],
+  [-10, -2, -3],
+  [12, 0, -5],
+  [9, 3, -5],
+  [10, -4, -5],
+  [8, -1, -6],
+];
+
+export const threePositions: [number, number, number][] = [
+  [-9, 3, -5],
+  [-8, -3, -5],
+  [-11, 2, -5],
+  [-6, 1, -3],
+  [-12, -2, -6],
+  [12, -1, -5],
+  [8, -2, -5],
+  [13, -5, -7],
+  [11, 3, -5],
+  [8, 1, -5],
+];

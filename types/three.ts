@@ -7,4 +7,6 @@ export type SkillId =
   | "next"
   | "scss"
   | "tailwind"
-  | "git";
+  | "git"
+  | "jest"
+  | "three";

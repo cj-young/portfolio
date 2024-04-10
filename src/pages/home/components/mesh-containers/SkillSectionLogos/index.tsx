@@ -6,11 +6,13 @@ import {
   cssPositions,
   gitPositions,
   htmlPositions,
+  jestPositions,
   jsPositions,
   nextPositions,
   reactPositions,
   scssPositions,
   tailwindPositions,
+  threePositions,
   tsPositions,
 } from "./logo-positions";
 import LogoWrapper from "./logos/LogoWrapper";
@@ -41,25 +43,35 @@ export default function SkillSectionLogos() {
         <LogoWrapper position={position} skillId="ts" key={`ts${i}`} />
       ))}
       {htmlPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="html" key={`ts${i}`} />
+        <LogoWrapper position={position} skillId="html" key={`html${i}`} />
       ))}
       {cssPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="css" key={`ts${i}`} />
+        <LogoWrapper position={position} skillId="css" key={`css${i}`} />
       ))}
       {reactPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="react" key={`ts${i}`} />
+        <LogoWrapper position={position} skillId="react" key={`react${i}`} />
       ))}
       {nextPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="next" key={`ts${i}`} />
+        <LogoWrapper position={position} skillId="next" key={`next${i}`} />
       ))}
       {scssPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="scss" key={`ts${i}`} />
+        <LogoWrapper position={position} skillId="scss" key={`scss${i}`} />
       ))}
       {tailwindPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="tailwind" key={`ts${i}`} />
+        <LogoWrapper
+          position={position}
+          skillId="tailwind"
+          key={`tailwind${i}`}
+        />
       ))}
       {gitPositions.map((position, i) => (
-        <LogoWrapper position={position} skillId="git" key={`ts${i}`} />
+        <LogoWrapper position={position} skillId="git" key={`git${i}`} />
+      ))}
+      {jestPositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="jest" key={`jest${i}`} />
+      ))}
+      {threePositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="three" key={`three${i}`} />
       ))}
     </group>
   );

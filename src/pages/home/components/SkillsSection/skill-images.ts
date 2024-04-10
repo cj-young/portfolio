@@ -1,11 +1,13 @@
 import cssIcon from "@/src/assets/skill-icons/css3.svg";
 import gitIcon from "@/src/assets/skill-icons/git-alt.svg";
 import htmlIcon from "@/src/assets/skill-icons/html5.svg";
+import jestIcon from "@/src/assets/skill-icons/jest.svg";
 import jsIcon from "@/src/assets/skill-icons/js-logo.svg";
 import nextIcon from "@/src/assets/skill-icons/nextjs.svg";
 import reactIcon from "@/src/assets/skill-icons/react.svg";
 import scssIcon from "@/src/assets/skill-icons/scss.svg";
 import tailwindIcon from "@/src/assets/skill-icons/tailwind.svg";
+import threeJsIcon from "@/src/assets/skill-icons/three-js-circle-fit.svg";
 import tsIcon from "@/src/assets/skill-icons/ts-logo.svg";
 import { SkillId } from "@/types/three";
 
@@ -71,6 +73,20 @@ export const skills: {
     id: "tailwind",
     color: "#38bdf8",
     text: "Tailwind",
+  },
+  {
+    imageUrl: jestIcon,
+    imageWidth: "50%",
+    id: "jest",
+    color: "#c21325",
+    text: "Jest",
+  },
+  {
+    imageUrl: threeJsIcon,
+    imageWidth: "60%",
+    id: "three",
+    color: "#000000",
+    text: "Three.js",
   },
   {
     imageUrl: gitIcon,

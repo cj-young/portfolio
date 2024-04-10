@@ -7,8 +7,8 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 import DynamicSubtitle from "./components/DynamicSubtitle";
 import { skills } from "./skill-images";
 
-const NUM_SKILL_NODES = 9;
-const SKILL_NODE_OFFSET_ANGLE = 60;
+const NUM_SKILL_NODES = skills.length;
+const SKILL_NODE_OFFSET_ANGLE = 40;
 const ANGLE_BETWEEN_SKILL_NODES =
   (360 - 2 * SKILL_NODE_OFFSET_ANGLE) / (NUM_SKILL_NODES - 1);
 
