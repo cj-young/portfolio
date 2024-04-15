@@ -4,7 +4,7 @@ import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import projectConfigs from "./config/projects";
 import HomePage from "./pages/home";
 import BlobModel from "./pages/home/components/mesh-containers/Blob";
@@ -47,6 +47,7 @@ export default function App() {
             key={key}
           />
         ))}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
