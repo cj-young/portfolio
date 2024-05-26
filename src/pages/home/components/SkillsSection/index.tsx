@@ -27,11 +27,11 @@ export default function SkillsSection() {
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
   const { scroller } = useScrollContext();
   const { parentRef: mobileParentRef, scrollTargetRef: mobileScrollTargetRef } =
-    useStaggeredFadeIn<HTMLDivElement>(scroller, {
+    useStaggeredFadeIn<HTMLUListElement, HTMLDivElement>(scroller, {
       duration: 0.5,
     });
   const { parentRef: largeParentRef, scrollTargetRef: largeScrollTargetRef } =
-    useStaggeredFadeIn<HTMLDivElement>(scroller, {
+    useStaggeredFadeIn<HTMLUListElement, HTMLDivElement>(scroller, {
       duration: 0.5,
       onAnimationFinished: () => setIsAnimationFinished(true),
     });
@@ -62,7 +62,7 @@ export default function SkillsSection() {
         <DynamicSubtitle
           hoveredItem={isAnimationFinished ? hoveredItem : null}
         />
-        <div
+        <ul
           className="mt-4 grid grid-cols-3 gap-4 md:hidden"
           ref={mobileParentRef}
           data-animate-grandparent="false"
@@ -81,8 +81,8 @@ export default function SkillsSection() {
               name={skill.text}
             />
           ))}
-        </div>
-        <div
+        </ul>
+        <ul
           className="absolute left-1/2 top-1/2 mt-0 hidden -translate-x-1/2 -translate-y-1/2 grid-cols-3 gap-4 md:block"
           ref={largeParentRef}
           data-animate-grandparent="false"
@@ -102,7 +102,7 @@ export default function SkillsSection() {
               name={skill.text}
             />
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
@@ -130,7 +130,7 @@ function SkillImage({
   name,
 }: SkillImageProps) {
   return !isMobile ? (
-    <div
+    <li
       className={
         "align-center absolute left-[var(--circle-translate-x)] top-[var(--circle-translate-y)] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)] transition-[scale]"
       }
@@ -152,9 +152,9 @@ function SkillImage({
         }}
         alt={`${name} logo`}
       />
-    </div>
+    </li>
   ) : (
-    <div
+    <li
       className={
         "align-center flex h-20 w-20 justify-center rounded-[1000vmax] bg-white shadow-[0_0_16px_4px_rgba(0,0,0,15%)] transition-[scale]"
       }
@@ -173,6 +173,6 @@ function SkillImage({
         }}
         alt={`${name} logo`}
       />
-    </div>
+    </li>
   );
 }
