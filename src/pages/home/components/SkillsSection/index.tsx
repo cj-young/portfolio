@@ -63,7 +63,7 @@ export default function SkillsSection() {
           hoveredItem={isAnimationFinished ? hoveredItem : null}
         />
         <ul
-          className="mt-4 grid grid-cols-3 gap-4 md:hidden"
+          className="mt-4 flex w-[17rem] max-w-full flex-wrap justify-center gap-4 md:hidden"
           ref={mobileParentRef}
           data-animate-grandparent="false"
         >
