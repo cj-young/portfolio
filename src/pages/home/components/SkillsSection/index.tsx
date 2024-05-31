@@ -11,6 +11,7 @@ const NUM_SKILL_NODES = skills.length;
 const SKILL_NODE_OFFSET_ANGLE = 40;
 const ANGLE_BETWEEN_SKILL_NODES =
   (360 - 2 * SKILL_NODE_OFFSET_ANGLE) / (NUM_SKILL_NODES - 1);
+const ENTER_ANIMATION_DURATION = 1 / 3;
 
 function getSkillNodeTranslations(cicrleIndex: number) {
   const angle =
@@ -21,18 +22,16 @@ function getSkillNodeTranslations(cicrleIndex: number) {
   ] as [string, string];
 }
 
-// const skillImages = Array.from({ length: 9 }, () => null);
-
 export default function SkillsSection() {
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
   const { scroller } = useScrollContext();
   const { parentRef: mobileParentRef, scrollTargetRef: mobileScrollTargetRef } =
     useStaggeredFadeIn<HTMLUListElement, HTMLDivElement>(scroller, {
-      duration: 0.5,
+      duration: ENTER_ANIMATION_DURATION,
     });
   const { parentRef: largeParentRef, scrollTargetRef: largeScrollTargetRef } =
     useStaggeredFadeIn<HTMLUListElement, HTMLDivElement>(scroller, {
-      duration: 0.5,
+      duration: ENTER_ANIMATION_DURATION,
       onAnimationFinished: () => setIsAnimationFinished(true),
     });
   const { parentRef: grandparentRef } = useStaggeredFadeIn<HTMLDivElement>(
