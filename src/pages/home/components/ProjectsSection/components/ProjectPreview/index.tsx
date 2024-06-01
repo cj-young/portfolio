@@ -202,7 +202,7 @@ export default function ProjectPreview({ project }: Props) {
   return (
     <>
       <Link
-        className="relative block h-full w-full cursor-pointer overflow-hidden rounded-md"
+        className="relative block h-full w-full cursor-pointer overflow-hidden rounded-md hover:shadow-[0_0_16px_4px_rgba(0,0,0,15%)] transition-shadow duration-250"
         to={`/projects/${project.id}`}
         ref={linkRef}
         data-flip-id="container"
