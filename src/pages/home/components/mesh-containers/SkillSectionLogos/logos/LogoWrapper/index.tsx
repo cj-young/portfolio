@@ -5,7 +5,7 @@ import { useProgress } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import { Group } from "three";
+import { Group, Vector3 } from "three";
 import CssLogo from "../Css";
 import GitLogo from "../Git";
 import HtmlLogo from "../Html";
@@ -129,7 +129,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
     if (progress < 100) return;
     const group = innerRef.current;
     if (!group) return;
-    group.lookAt(camera.position);
+    group.lookAt(new Vector3(camera.position.x, group.position.y, camera.position.z));
     const { x, y, z } = group.rotation;
     startingRotation.current = { x, y, z };
   }, [progress]);
