@@ -1,5 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import { Canvas } from "@react-three/fiber";
+import { Analytics } from "@vercel/analytics/react";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
 import { Flip } from "gsap/Flip";
@@ -49,6 +50,7 @@ export default function App() {
         ))}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Analytics />
     </>
   );
 }
