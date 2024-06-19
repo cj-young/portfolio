@@ -41,7 +41,7 @@ export default function HeroSection() {
           CJ Young
         </h1>
         <p className="mt-3 text-xl font-semibold text-purple md:mt-[1.125rem] md:self-end">
-          Front-end Developer
+          Front-End Developer
         </p>
       </div>
       <button
