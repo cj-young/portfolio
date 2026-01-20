@@ -10,7 +10,7 @@ export default function AboutSection() {
       <div className="flex flex-col items-center" ref={parentRef}>
         <h2 className="text-subtitle font-bold text-purple">About Me</h2>
         <p className="mt-4 max-w-[50ch] text-balance text-center text-base text-gray-400">
-          I'm CJ Young, a front-end web developer from North Carolina. I first
+          I'm CJ Young, a front-end web developer. I first
           started coding on a TI-84 calculator and fell in love with the process
           of creating programs. Since then, I've made it a priority to learn new
           things about software development and have continually strived to
