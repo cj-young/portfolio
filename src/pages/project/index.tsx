@@ -124,6 +124,7 @@ export default function ProjectPage({ project }: Props) {
               <img
                 src={project.images[prevImageIndex]}
                 className="object-cover object-left-top"
+                alt=""
               />
             </div>
             <div
@@ -137,6 +138,7 @@ export default function ProjectPage({ project }: Props) {
               <img
                 src={project.images[currentImageIndex]}
                 className="object-cover object-left-top"
+                alt=""
               />
             </div>
           </div>
