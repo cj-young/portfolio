@@ -45,11 +45,14 @@ chatDemoParams.set("demoPassword", chatDemoPassword);
 // Username: demoone
 // Display Name: Demo Uno
 // Password: 0!OBr$5
+
+export type Vec3 = readonly [number, number, number];
+
 export type ProjectModelProps = {
   color?: ColorRepresentation;
-  position?: [number, number, number];
-  rotation?: [number, number, number];
-  scale?: [number, number, number];
+  position?: Vec3;
+  rotation?: Vec3;
+  scale?: Vec3;
 } & Omit<JSX.IntrinsicElements["group"], "position" | "rotation" | "scale">;
 
 export type ProjectModel =
@@ -70,11 +73,11 @@ export type Project = {
   secondaryColor: string;
   titleColor: string;
   textColor: string;
-  models: ProjectModel[];
-  images: string[];
+  models: readonly ProjectModel[];
+  images: readonly string[];
   previewImage: string;
   previewImageInset: string;
-  techTags: TechTag[];
+  techTags: readonly TechTag[];
   copywriting: CopywriteItem;
   links?: {
     code?: string;
@@ -126,7 +129,7 @@ const projectConfigs = {
   whischat: {
     name: "Whischat",
     id: "whischat",
-    backgroundColor: "#008533",
+    backgroundColor: "#005e24",
     secondaryColor: "#004219",
     titleColor: "#e9f5ed",
     textColor: "#c5edd4",
@@ -138,12 +141,12 @@ const projectConfigs = {
           position: [3.4, 0, 0],
           rotation: [0, -1.4, 0.2],
           scale: [1.5, 1.5, 1.5],
-          color: "#008533",
+          color: "#005e24",
         },
         props: {
           position: [2.5, 0, 0],
           scale: [2, 2, 2],
-          color: "#008533",
+          color: "#005e24",
         },
       },
     ],

@@ -211,12 +211,13 @@ export default function ProjectPage({ project }: Props) {
                 data-animate-grandparent="false"
               >
                 {project.techTags.map((tag) => (
-                  <TechTag
-                    name={tag.name}
-                    textColor={tag.textColor}
-                    backgroundColor={tag.backgroundColor}
-                    key={tag.name}
-                  />
+                  <li className="block w-min list-none" key={tag.name}>
+                    <TechTag
+                      name={tag.name}
+                      textColor={tag.textColor}
+                      backgroundColor={tag.backgroundColor}
+                    />
+                  </li>
                 ))}
               </ul>
               <div

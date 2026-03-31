@@ -8,7 +8,7 @@ export const techTagPresets = {
   express: {
     name: "Express",
     textColor: "#ffffff",
-    backgroundColor: "#ffffff80",
+    backgroundColor: "#81818180",
   },
   typeScript: {
     name: "TypeScript",
@@ -17,23 +17,23 @@ export const techTagPresets = {
   },
   scss: {
     name: "SCSS",
-    textColor: "#ebbcd4",
+    textColor: "#f7edf3",
     backgroundColor: "#ab487b80",
   },
   mongoDb: {
     name: "MongoDB",
-    textColor: "#2fde77",
+    textColor: "#bcebcf",
     backgroundColor: "#148f4780",
   },
   socketIo: {
     name: "Socket.IO",
     textColor: "#ffffff",
-    backgroundColor: "#ffffff80",
+    backgroundColor: "#81818180",
   },
   react: {
     name: "React",
-    textColor: "#9ae7fc",
-    backgroundColor: "#1b6f8780",
+    textColor: "#e0f8ff",
+    backgroundColor: "#0f4b5c80",
   },
   angular: {
     name: "Angular",
@@ -42,12 +42,12 @@ export const techTagPresets = {
   },
   firebase: {
     name: "Firebase",
-    textColor: "#f5cc89",
+    textColor: "#fce4bd",
     backgroundColor: "#80571780",
   },
   tailwind: {
     name: "Tailwind",
-    textColor: "#91e6ed",
+    textColor: "#c7ecf0",
     backgroundColor: "#176e7580",
   },
   next: {
