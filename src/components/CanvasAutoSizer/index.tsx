@@ -16,5 +16,5 @@ export default function CanvasAutoSizer({ children }: Props) {
     }
   });
 
-  return children ?? null;
+  return <>{children}</> ?? null;
 }
