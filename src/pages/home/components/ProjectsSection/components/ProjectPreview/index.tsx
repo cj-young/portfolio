@@ -2,6 +2,7 @@ import gitHubIcon from "@/src/assets/icons/github.svg";
 import globeIcon from "@/src/assets/icons/globe-solid.svg";
 import { Project } from "@/src/config/projects";
 import { useCanvasPortals } from "@/src/contexts/CanvasPortalsContext";
+import useReducedMotion from "@/src/hooks/useReducedMotion";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 import { useEffect, useRef } from "react";
@@ -27,6 +28,10 @@ export default function ProjectPreview({ project }: Props) {
   const unfilteredImageRef = useRef<HTMLImageElement>(null);
   const { portalNodes } = useCanvasPortals();
 
+  const prefersReducedMotion = useReducedMotion();
+
+  const accessibleDuration = prefersReducedMotion ? 0 : TRANSITION_DURATION;
+
   const portalNode = portalNodes.get(project.id);
 
   useEffect(() => {
@@ -42,9 +47,10 @@ export default function ProjectPreview({ project }: Props) {
     return () => {
       link.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [accessibleDuration]);
 
-  function handleClick(e: MouseEvent) {
+  const handleClick = (e: MouseEvent) => {
+    console.log("ACCESSIBLE DURATION", accessibleDuration);
     e.preventDefault();
     const link = linkRef.current;
     if (!link) return;
@@ -138,7 +144,7 @@ export default function ProjectPreview({ project }: Props) {
         top: newImageTop,
         width: newImageWidth,
         height: newImageHeight,
-        duration: TRANSITION_DURATION,
+        duration: accessibleDuration,
         ease: TRANSITION_EASE,
       });
     }
@@ -146,13 +152,13 @@ export default function ProjectPreview({ project }: Props) {
     if (unfilteredImage) {
       gsap.to(unfilteredImage, {
         opacity: 1,
-        duration: TRANSITION_DURATION,
+        duration: accessibleDuration,
         ease: TRANSITION_EASE,
       });
     }
 
     Flip.from(state, {
-      duration: TRANSITION_DURATION,
+      duration: accessibleDuration,
       ease: TRANSITION_EASE,
       onComplete,
     });
@@ -167,7 +173,7 @@ export default function ProjectPreview({ project }: Props) {
         x: newPosition[0],
         y: newPosition[1],
         z: newPosition[2],
-        duration: TRANSITION_DURATION,
+        duration: accessibleDuration,
         ease: TRANSITION_EASE,
       });
 
@@ -176,7 +182,7 @@ export default function ProjectPreview({ project }: Props) {
         x: newRotation[0],
         y: newRotation[1],
         z: newRotation[2],
-        duration: TRANSITION_DURATION,
+        duration: accessibleDuration,
         ease: TRANSITION_EASE,
       });
 
@@ -185,7 +191,7 @@ export default function ProjectPreview({ project }: Props) {
         x: newScale[0],
         y: newScale[1],
         z: newScale[2],
-        duration: TRANSITION_DURATION,
+        duration: accessibleDuration,
         ease: TRANSITION_EASE,
       });
     }
@@ -193,11 +199,11 @@ export default function ProjectPreview({ project }: Props) {
     if (previewContentRef.current) {
       gsap.to(previewContentRef.current, {
         opacity: 0,
-        duration: TRANSITION_DURATION,
+        duration: accessibleDuration,
         ease: TRANSITION_EASE,
       });
     }
-  }
+  };
 
   return (
     <>
