@@ -16,7 +16,16 @@ const Pawn = forwardRef<THREE.Group>(
   ({ color, ...props }: ProjectModelProps, ref) => {
     const { nodes } = useGLTF("/3d-models/pawn.glb") as GLTFResult;
     return (
-      <group {...props} dispose={null} ref={ref}>
+      <group
+        {...{
+          ...props,
+          position: structuredClone(props.position) as [number, number, number],
+          rotation: structuredClone(props.rotation) as [number, number, number],
+          scale: structuredClone(props.scale) as [number, number, number],
+        }}
+        dispose={null}
+        ref={ref}
+      >
         <mesh
           castShadow
           receiveShadow
