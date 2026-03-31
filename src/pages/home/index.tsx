@@ -1,3 +1,4 @@
+import Navbar from "@/src/components/Navbar";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import HeroSection from "./components/HeroSection";
@@ -28,6 +29,7 @@ function MainSection() {
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
+      <Navbar />
     </main>
   );
 }

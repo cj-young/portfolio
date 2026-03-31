@@ -13,6 +13,7 @@ import LeftBracket from "./pages/home/components/mesh-containers/LeftBracket";
 import RightBracket from "./pages/home/components/mesh-containers/RightBracket";
 import SkillSectionLogos from "./pages/home/components/mesh-containers/SkillSectionLogos";
 import ProjectPage from "./pages/project";
+import Navbar from "./components/Navbar";
 
 gsap.registerPlugin(ScrollTrigger, CSSPlugin, Flip, useGSAP);
 
