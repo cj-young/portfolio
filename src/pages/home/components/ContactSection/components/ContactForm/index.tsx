@@ -107,6 +107,7 @@ export default function ContactForm() {
               maxLength: MAX_MESSAGE_LENGTH,
             })}
             readOnly={isSubmitting}
+            aria-label="Enter your message here"
           />
           {errors.message?.message && (
             <div className="absolute -bottom-1 right-0 z-30 mt-2 translate-y-full rounded-md bg-red-500 px-2 py-1 text-sm font-bold text-white">
