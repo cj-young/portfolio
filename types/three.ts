@@ -9,4 +9,5 @@ export type SkillId =
   | "tailwind"
   | "git"
   | "jest"
-  | "three";
+  | "three"
+  | "go";

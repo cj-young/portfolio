@@ -125,3 +125,18 @@ export const threePositions: [number, number, number][] = [
   [11, 3, -5],
   [8, 1, -5],
 ];
+
+
+export const goPositions: [number, number, number][] = [
+  [-9, 3, -5],
+  [-8, -3, -5],
+  [-11, 2, -5],
+  [-6, 1, -3],
+  [-12, -2, -6],
+  [12, -1, -5],
+  [8, -2, -5],
+  [13, -5, -7],
+  [11, 3, -5],
+  [8, 1, -5],
+];
+

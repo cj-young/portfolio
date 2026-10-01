@@ -5,6 +5,7 @@ import { useScrollContext } from "../../../contexts/ScrollContext";
 import {
   cssPositions,
   gitPositions,
+  goPositions,
   htmlPositions,
   jestPositions,
   jsPositions,
@@ -72,6 +73,9 @@ export default function SkillSectionLogos() {
       ))}
       {threePositions.map((position, i) => (
         <LogoWrapper position={position} skillId="three" key={`three${i}`} />
+      ))}
+      {goPositions.map((position, i) => (
+        <LogoWrapper position={position} skillId="go" key={`go${i}`}/>
       ))}
     </group>
   );

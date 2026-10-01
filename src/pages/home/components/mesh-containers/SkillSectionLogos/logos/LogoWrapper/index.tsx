@@ -17,6 +17,7 @@ import ScssLogo from "../Scss";
 import TailwindLogo from "../Tailwind";
 import ThreeLogo from "../Three";
 import TypeScriptLogo from "../TypeScript";
+import GoGopher from "../Go";
 
 type Props = {
   position: [number, number, number];
@@ -156,5 +157,7 @@ export default function LogoWrapper({ position, skillId }: Props) {
     <JestLogo position={position} innerRef={innerRef} />
   ) : skillId === "three" ? (
     <ThreeLogo position={position} innerRef={innerRef} />
-  ) : null;
+  ) : skillId === "go" ? (
+    <GoGopher position={position} innerRef={innerRef} />
+  ) : null
 }

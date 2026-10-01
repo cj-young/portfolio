@@ -5,10 +5,10 @@ import jestIcon from "@/src/assets/skill-icons/jest.svg";
 import jsIcon from "@/src/assets/skill-icons/js-logo.svg";
 import nextIcon from "@/src/assets/skill-icons/nextjs.svg";
 import reactIcon from "@/src/assets/skill-icons/react.svg";
-import scssIcon from "@/src/assets/skill-icons/scss.svg";
 import tailwindIcon from "@/src/assets/skill-icons/tailwind.svg";
 import threeJsIcon from "@/src/assets/skill-icons/three-js-circle-fit.svg";
 import tsIcon from "@/src/assets/skill-icons/ts-logo.svg";
+import goIcon from "@/src/assets/skill-icons/go.svg"
 import { SkillId } from "@/types/three";
 
 export const skills: {
@@ -61,11 +61,11 @@ export const skills: {
     text: "Next.js",
   },
   {
-    imageUrl: scssIcon,
+    imageUrl: goIcon,
     imageWidth: "60%",
-    id: "scss",
-    color: "#cd6799",
-    text: "SCSS/SASS",
+    id: "go",
+    color: "#ce3262",
+    text: "Go"
   },
   {
     imageUrl: tailwindIcon,
